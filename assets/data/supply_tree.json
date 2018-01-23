@@ -1,0 +1,87 @@
+[
+  {
+    "unspsc": 10000,
+    "name": "Intravenous and Arterial Admin Products",
+    "physicianAcost": 54.05,
+    "physicianAqty": null,
+    "physicianBcost": 70.07,
+    "physicianBqty": null,
+    "physicianCcost": 54.05,
+    "physicianCqty": null,
+    "treeStatus": "collapsed"
+  },
+  {
+    "unspsc": 11000,
+    "parentUnspsc": 10000,
+    "name": "IV and Arterial Infusion Based Products and Supplies",
+    "physicianAcost": 53.39,
+    "physicianAqty": null,
+    "physicianBcost": 69.41,
+    "physicianBqty": null,
+    "physicianCcost": 53.39,
+    "physicianCqty": null,
+    "treeStatus": "collapsed"
+  },
+  {
+    "unspsc": 11100,
+    "parentUnspsc": 11000,
+    "name": "IV or Arterial Fluid Warmers",
+    "physicianAcost": 53.39,
+    "physicianAqty": null,
+    "physicianBcost": 69.41,
+    "physicianBqty": null,
+    "physicianCcost": 53.39,
+    "physicianCqty": null,
+    "treeStatus": "collapsed"
+  },
+  {
+    "unspsc": 11110,
+    "parentUnspsc": 11100,
+    "name": "SET FLUID WARMER LEVEL I IR600",
+    "avgCost": 53.39,
+    "physicianAcost": 53.39,
+    "physicianAqty": 1,
+    "physicianBcost": 69.41,
+    "physicianBqty": 1.3,
+    "physicianCcost": 53.39,
+    "physicianCqty": 1,
+    "treeStatus": "collapsed"
+  },
+  {
+    "unspsc": 12000,
+    "parentUnspsc": 10000,
+    "name": "IV and Arterial Tubing and Admin Sets and Related Products",
+    "physicianAcost": 0.66,
+    "physicianAqty": null,
+    "physicianBcost": 0.66,
+    "physicianBqty": null,
+    "physicianCcost": 0.66,
+    "physicianCqty": null,
+    "treeStatus": "collapsed"
+  },
+  {
+    "unspsc": 12100,
+    "parentUnspsc": 12000,
+    "name": "IV or Arterial Tubing Needless Injection Port Products",
+    "physicianAcost": 0.66,
+    "physicianAqty": null,
+    "physicianBcost": 0.66,
+    "physicianBqty": null,
+    "physicianCcost": 0.66,
+    "physicianCqty": null,
+    "treeStatus": "collapsed"
+  },
+  {
+    "unspsc": 12110,
+    "parentUnspsc": 12100,
+    "name": "STOPCOCK PLUS 4WAY TAP ROTATION",
+    "avgCost": 0.66,
+    "physicianAcost": 0.66,
+    "physicianAqty": 1,
+    "physicianBcost": 0.66,
+    "physicianBqty": 1,
+    "physicianCcost": 0.66,
+    "physicianCqty": 1,
+    "treeStatus": "collapsed"
+  }
+]

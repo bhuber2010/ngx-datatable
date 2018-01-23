@@ -1,0 +1,77 @@
+<div>
+  <h3>
+    Supply Cost Tree
+  </h3>
+  <ngx-datatable
+    class="material fullscreen"
+    style="top: 52px"
+    [columnMode]="'flex'"
+    [headerHeight]="50"
+    [footerHeight]="50"
+    [rowHeight]="'auto'"
+    [treeFromRelation]="'parentUnspsc'"
+    [treeToRelation]="'unspsc'"
+    [rows]="rows"
+    (treeAction)="onTreeAction($event)">
+
+    <ngx-datatable-column name="Name" [flexGrow]="4" [isTreeColumn]="true">
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+      <ng-template ngx-datatable-tree-icon let-tree="treeStatus">
+        <i *ngIf="tree==='loading'"
+          class="icon datatable-icon-collapse"></i>
+        <i *ngIf="tree==='collapsed'"
+          class="icon datatable-icon-up"></i>
+        <i *ngIf="tree==='expanded'"
+          class="icon datatable-icon-down"></i>
+        <i *ngIf="tree==='disabled'"
+          class="disabled icon datatable-icon-down"></i>
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="avgCost" [flexGrow]="1">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <!-- Physician A -->
+    <ngx-datatable-column name="physicianAqty" [flexGrow]="1">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <ngx-datatable-column name="physicianAcost" [flexGrow]="1">
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <!-- Physician B -->
+    <ngx-datatable-column name="physicianBqty" [flexGrow]="1">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="physicianBcost" [flexGrow]="1">
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <!-- Physician C -->
+    <ngx-datatable-column name="physicianCqty" [flexGrow]="1">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+    <ngx-datatable-column name="physicianCcost" [flexGrow]="1">
+      <ng-template let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+
+  </ngx-datatable>
+</div>

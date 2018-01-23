@@ -47,6 +47,7 @@ import { TemplateRefTemplatesComponent } from './templates/template-obj.componen
 // -- Tree
 import { FullScreenTreeComponent } from './tree/fullscreen.component';
 import { ClientTreeComponent } from './tree/client-tree.component';
+import { SupplyTreeComponent } from './tree/supply-tree.component'
 
 // -- Selection
 import { CellSelectionComponent } from './selection/selection-cell.component';
@@ -110,7 +111,8 @@ import { ColumnPinningComponent } from './columns/pinning.component';
     FooterDemoComponent,
     RowGroupingComponent,
     BootstrapThemeComponent,
-    ClientTreeComponent
+    ClientTreeComponent,
+    SupplyTreeComponent
   ],
   imports: [BrowserModule, NgxDatatableModule],
   bootstrap: [AppComponent]
