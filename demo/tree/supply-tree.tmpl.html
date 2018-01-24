@@ -22,11 +22,11 @@
       </ng-template>
     </ngx-datatable-column>
 
-    <!-- <ngx-datatable-column [frozenLeft]="true" [flexGrow]="1">
+    <ngx-datatable-column [frozenLeft]="true" [flexGrow]="1">
       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
         <button type="button" (click)="expandTree(row)">Exp Level</button>
       </ng-template>
-    </ngx-datatable-column> -->
+    </ngx-datatable-column>
 
     <ngx-datatable-column name="Supply Name" prop="name" [flexGrow]="4" [isTreeColumn]="true">
       <ng-template let-value="value" ngx-datatable-cell-template>
@@ -51,17 +51,19 @@
     </ngx-datatable-column>
 
     <!-- Physician A -->
-    <ngx-datatable-column name="Physcian A Qty" prop="physicianAqty" [flexGrow]="1">
-      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        {{value}}
-      </ng-template>
-    </ngx-datatable-column>
+    <div *ngFor="let dr of rows[0]?.doctors; let rows = rows; index as i;">
+      <ngx-datatable-column name="{{dr.name}} Qty" prop="doctors.{{i}}.qty" [flexGrow]="1">
+        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+      </ngx-datatable-column>
 
-    <ngx-datatable-column name="Physcian A Cost" prop="physicianAcost" [flexGrow]="1">
-      <ng-template let-value="value" ngx-datatable-cell-template>
-        {{value}}
-      </ng-template>
-    </ngx-datatable-column>
+      <ngx-datatable-column name="{{dr.name}} Cost" prop="doctors.{{i}}.cost" [flexGrow]="1">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+    </div>
 
     <!-- Physician B -->
     <!-- <ngx-datatable-column name="Physcian B Qty" prop="physicianBqty" [flexGrow]="1"
