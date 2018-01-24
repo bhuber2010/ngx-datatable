@@ -30,6 +30,10 @@ export class SupplyTreeComponent {
     req.send();
   }
 
+  getCellClass({ row, column, value }) {
+    
+  }
+
   onTreeAction(event: any) {
     const index = event.rowIndex;
     const row = event.row;
@@ -39,6 +43,21 @@ export class SupplyTreeComponent {
       this.rows[index].treeStatus = 'collapsed';
     }
     this.rows = [...this.rows];
+  }
+
+  expandTree(row: any) {
+    console.log(row)
+    const rowLevel = row.level
+    if (row.treeStatus === 'collapsed') {
+        this.rows.forEach(r => {
+          if(r.level === rowLevel) r.treeStatus = 'expanded'
+        })
+    } else {
+      this.rows.forEach(r => {
+        if(r.level === rowLevel) r.treeStatus = 'collapsed'
+      })
+    }
+    this.rows = [...this.rows]
   }
 
 }

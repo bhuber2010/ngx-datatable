@@ -9,12 +9,26 @@
     [headerHeight]="50"
     [footerHeight]="50"
     [rowHeight]="'auto'"
+    [selectionType]="chkbox"
+    [rows]="rows"
+    [trackByProp]="unspsc"
     [treeFromRelation]="'parentUnspsc'"
     [treeToRelation]="'unspsc'"
-    [rows]="rows"
     (treeAction)="onTreeAction($event)">
 
-    <ngx-datatable-column name="Name" [flexGrow]="4" [isTreeColumn]="true">
+    <ngx-datatable-column [checkboxable]="true" [frozenLeft]="true" [flexGrow]="0.5">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        {{value}}
+      </ng-template>
+    </ngx-datatable-column>
+
+    <!-- <ngx-datatable-column [frozenLeft]="true" [flexGrow]="1">
+      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
+        <button type="button" (click)="expandTree(row)">Exp Level</button>
+      </ng-template>
+    </ngx-datatable-column> -->
+
+    <ngx-datatable-column name="Supply Name" prop="name" [flexGrow]="4" [isTreeColumn]="true">
       <ng-template let-value="value" ngx-datatable-cell-template>
         {{value}}
       </ng-template>
@@ -30,48 +44,50 @@
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column name="avgCost" [flexGrow]="1">
+    <ngx-datatable-column name="Avg Cost" prop="avgCost" [flexGrow]="1">
       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
         {{value}}
       </ng-template>
     </ngx-datatable-column>
 
     <!-- Physician A -->
-    <ngx-datatable-column name="physicianAqty" [flexGrow]="1">
+    <ngx-datatable-column name="Physcian A Qty" prop="physicianAqty" [flexGrow]="1">
       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
         {{value}}
       </ng-template>
     </ngx-datatable-column>
 
-    <ngx-datatable-column name="physicianAcost" [flexGrow]="1">
+    <ngx-datatable-column name="Physcian A Cost" prop="physicianAcost" [flexGrow]="1">
       <ng-template let-value="value" ngx-datatable-cell-template>
         {{value}}
       </ng-template>
     </ngx-datatable-column>
 
     <!-- Physician B -->
-    <ngx-datatable-column name="physicianBqty" [flexGrow]="1">
+    <!-- <ngx-datatable-column name="Physcian B Qty" prop="physicianBqty" [flexGrow]="1"
+      [cellClass]="getCellClass">
       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
         {{value}}
       </ng-template>
     </ngx-datatable-column>
-    <ngx-datatable-column name="physicianBcost" [flexGrow]="1">
+    <ngx-datatable-column name="Physcian B Cost" prop="physicianBcost" [flexGrow]="1"
+      [cellClass]="getCellClass">
       <ng-template let-value="value" ngx-datatable-cell-template>
         {{value}}
       </ng-template>
-    </ngx-datatable-column>
+    </ngx-datatable-column> -->
 
     <!-- Physician C -->
-    <ngx-datatable-column name="physicianCqty" [flexGrow]="1">
+    <!-- <ngx-datatable-column name="Physcian C Qty" prop="physicianCqty" [flexGrow]="1">
       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
         {{value}}
       </ng-template>
     </ngx-datatable-column>
-    <ngx-datatable-column name="physicianCcost" [flexGrow]="1">
+    <ngx-datatable-column name="Physcian C Cost" prop="physicianCcost" [flexGrow]="1">
       <ng-template let-value="value" ngx-datatable-cell-template>
         {{value}}
       </ng-template>
-    </ngx-datatable-column>
+    </ngx-datatable-column> -->
 
   </ngx-datatable>
 </div>
