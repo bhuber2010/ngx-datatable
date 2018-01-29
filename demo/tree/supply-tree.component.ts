@@ -6,7 +6,7 @@ import { Component, AfterViewInit } from '@angular/core';
   styles: [
     '.icon {height: 10px; width: 10px; }',
     '.disabled {opacity: 0.5; }',
-    '#level-select { width: 100px; }'
+    '#level-select { width: 100px; margin: 0; }'
   ],
 
 })
