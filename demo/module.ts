@@ -1,5 +1,6 @@
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 import { NgxDatatableModule } from '../src';
 import { AppComponent } from './app.component';
@@ -114,7 +115,11 @@ import { ColumnPinningComponent } from './columns/pinning.component';
     ClientTreeComponent,
     SupplyTreeComponent
   ],
-  imports: [BrowserModule, NgxDatatableModule],
+  imports: [
+    BrowserModule,
+    FlexLayoutModule,
+    NgxDatatableModule
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
