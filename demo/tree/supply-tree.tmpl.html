@@ -24,7 +24,7 @@
 
     <ngx-datatable-column [frozenLeft]="true" [flexGrow]="1">
       <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        <button type="button" (click)="expandTree(row)">Exp Level</button>
+        <button *ngIf="row.treeStatus != 'disabled'" type="button" (click)="expandTree(row)">Exp Level</button>
       </ng-template>
     </ngx-datatable-column>
 
