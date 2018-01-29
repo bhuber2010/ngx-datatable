@@ -1,22 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'supply-tree-demo',
   templateUrl: 'supply-tree.tmpl.html',
   styles: [
     '.icon {height: 10px; width: 10px; }',
-    '.disabled {opacity: 0.5; }'
+    '.disabled {opacity: 0.5; }',
+    '#level-select { width: 100px; }'
   ],
 
 })
-export class SupplyTreeComponent {
+export class SupplyTreeComponent implements AfterViewInit {
 
   rows = [];
+  levelsExpanded: number = 0;
+
 
   constructor() {
     this.fetch((data) => {
       this.rows = data;
     });
+  }
+
+  ngAfterViewInit() {
+    this.setLevelsExpanded(this.levelsExpanded)
   }
 
   fetch(cb) {
@@ -31,10 +38,11 @@ export class SupplyTreeComponent {
   }
 
   getCellClass({ row, column, value }) {
-    
+
   }
 
   onTreeAction(event: any) {
+    console.log(event)
     const index = event.rowIndex;
     const row = event.row;
     if (this.rows[index].treeStatus === 'collapsed') {
@@ -57,6 +65,17 @@ export class SupplyTreeComponent {
         if(r.level === rowLevel) r.treeStatus = 'collapsed'
       })
     }
+    this.rows = [...this.rows]
+  }
+
+  setLevelsExpanded(event) {
+    let selectedLevel = event.target && parseInt(event.target.value, 10)
+    selectedLevel = event.target ? selectedLevel : event // overload to directly set level
+    this.rows.forEach(row => {
+      if (row.treeStatus != "disabled") {
+        row.treeStatus = row.level <= selectedLevel ? 'expanded' : 'collapsed'
+      }
+    })
     this.rows = [...this.rows]
   }
 

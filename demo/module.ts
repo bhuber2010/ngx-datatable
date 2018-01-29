@@ -1,6 +1,9 @@
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FlexLayoutModule } from "@angular/flex-layout";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from './angular-material.module'
 
 import { NgxDatatableModule } from '../src';
 import { AppComponent } from './app.component';
@@ -117,6 +120,10 @@ import { ColumnPinningComponent } from './columns/pinning.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    MaterialModule,
+    ReactiveFormsModule,
     FlexLayoutModule,
     NgxDatatableModule
   ],

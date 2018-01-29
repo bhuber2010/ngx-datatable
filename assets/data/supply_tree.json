@@ -89,7 +89,7 @@
         "qty": null
       }
     ],
-    "treeStatus": "collapsed"
+    "treeStatus": "disabled"
   },
   {
     "unspsc": 12000,
@@ -159,6 +159,6 @@
         "qty": 1
       }
     ],
-    "treeStatus": "collapsed"
+    "treeStatus": "disabled"
   }
 ]

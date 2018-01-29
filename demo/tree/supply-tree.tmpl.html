@@ -12,6 +12,7 @@
     [selectionType]="chkbox"
     [rows]="rows"
     [trackByProp]="unspsc"
+    [scrollbarH]="true"
     [treeFromRelation]="'parentUnspsc'"
     [treeToRelation]="'unspsc'"
     (treeAction)="onTreeAction($event)">
@@ -29,6 +30,26 @@
     </ngx-datatable-column>
 
     <ngx-datatable-column name="Supply Name" prop="name" [flexGrow]="4" [isTreeColumn]="true">
+      <ng-template let-column="column" ngx-datatable-header-template>
+        <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="20px">
+          <span>{{column.name}}</span>
+          <select id="level-select"
+            (change)="setLevelsExpanded($event)"
+            [value]="levelsExpanded">
+            <option value="-1">Collapse All</option>
+            <option value="0">Level 0</option>
+            <option value="1">Level 1</option>
+            <option value="2">Level 2</option>
+          </select>
+          <!-- <mat-form-field>
+            <mat-select [(value)]="levelsExpanded" (selectionChange)="setLevelsExpanded($event)">
+              <mat-option value="option1">Level 1</mat-option>
+              <mat-option value="option2">Level 2</mat-option>
+              <mat-option value="option3">Level 3</mat-option>
+            </mat-select>
+          </mat-form-field> -->
+        </div>
+      </ng-template>
       <ng-template let-value="value" ngx-datatable-cell-template>
         {{value}}
       </ng-template>
@@ -64,32 +85,6 @@
         </ng-template>
       </ngx-datatable-column>
     </div>
-
-    <!-- Physician B -->
-    <!-- <ngx-datatable-column name="Physcian B Qty" prop="physicianBqty" [flexGrow]="1"
-      [cellClass]="getCellClass">
-      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        {{value}}
-      </ng-template>
-    </ngx-datatable-column>
-    <ngx-datatable-column name="Physcian B Cost" prop="physicianBcost" [flexGrow]="1"
-      [cellClass]="getCellClass">
-      <ng-template let-value="value" ngx-datatable-cell-template>
-        {{value}}
-      </ng-template>
-    </ngx-datatable-column> -->
-
-    <!-- Physician C -->
-    <!-- <ngx-datatable-column name="Physcian C Qty" prop="physicianCqty" [flexGrow]="1">
-      <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-        {{value}}
-      </ng-template>
-    </ngx-datatable-column>
-    <ngx-datatable-column name="Physcian C Cost" prop="physicianCcost" [flexGrow]="1">
-      <ng-template let-value="value" ngx-datatable-cell-template>
-        {{value}}
-      </ng-template>
-    </ngx-datatable-column> -->
 
   </ngx-datatable>
 </div>
