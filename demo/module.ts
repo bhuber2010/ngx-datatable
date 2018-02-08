@@ -1,6 +1,6 @@
 import { NgModule, ApplicationRef } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FlexLayoutModule } from "@angular/flex-layout";
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from './angular-material.module'
@@ -51,7 +51,7 @@ import { TemplateRefTemplatesComponent } from './templates/template-obj.componen
 // -- Tree
 import { FullScreenTreeComponent } from './tree/fullscreen.component';
 import { ClientTreeComponent } from './tree/client-tree.component';
-import { SupplyTreeComponent } from './tree/supply-tree.component'
+import { SupplyTreeComponentDemo } from './tree/supply-tree.component'
 
 // -- Selection
 import { CellSelectionComponent } from './selection/selection-cell.component';
@@ -68,6 +68,11 @@ import { ColumnStandardComponent } from './columns/column-standard.component';
 import { ColumnForceComponent } from './columns/column-force.component';
 import { ColumnFlexComponent } from './columns/column-flex.component';
 import { ColumnPinningComponent } from './columns/pinning.component';
+
+// -- Empiric Demo
+import { EmpiricComponent } from './empiric/empiric.component'
+import { SupplyTreeComponent } from './empiric/supply-detail/supply.component'
+import { EncountersComponent } from './empiric/encounters/encounters.component'
 
 @NgModule({
   declarations: [
@@ -116,7 +121,10 @@ import { ColumnPinningComponent } from './columns/pinning.component';
     RowGroupingComponent,
     BootstrapThemeComponent,
     ClientTreeComponent,
-    SupplyTreeComponent
+    SupplyTreeComponentDemo,
+    SupplyTreeComponent,
+    EncountersComponent,
+    EmpiricComponent
   ],
   imports: [
     BrowserModule,

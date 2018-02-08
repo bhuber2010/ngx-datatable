@@ -79,6 +79,7 @@
     "@angular/compiler": "^4.0.1",
     "@angular/compiler-cli": "^4.0.1",
     "@angular/core": "^4.0.1",
+    "@angular/flex-layout": "git+https://github.com/angular/flex-layout-builds.git",
     "@angular/forms": "^5.2.2",
     "@angular/material": "^5.1.0",
     "@angular/platform-browser": "^4.0.1",
@@ -111,6 +112,7 @@
     "karma-remap-coverage": "^0.1.3",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^2.0.6",
+    "lodash": "^4.17.4",
     "node-sass": "^4.6.1",
     "npm-run-all": "^4.1.2",
     "postcss": "^5.2.11",
@@ -139,7 +141,5 @@
     "webpack-notifier": "^1.5.0",
     "zone.js": "^0.8.18"
   },
-  "dependencies": {
-    "@angular/flex-layout": "git+https://github.com/angular/flex-layout-builds.git"
-  }
+  "dependencies": {}
 }

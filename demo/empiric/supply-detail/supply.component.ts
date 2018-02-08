@@ -1,13 +1,15 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, Input, AfterViewInit } from '@angular/core';
 
 @Component({
-  selector: 'supply-tree-demo',
+  selector: 'supply-tree',
   templateUrl: 'supply-tree.tmpl.html',
   styleUrls: [
     './supply-tree.scss'
   ]
 })
-export class SupplyTreeComponentDemo implements AfterViewInit {
+export class SupplyTreeComponent implements AfterViewInit {
+
+  @Input() visible: boolean
 
   rows = [];
   fullRowSet = [];
@@ -88,7 +90,7 @@ export class SupplyTreeComponentDemo implements AfterViewInit {
       const rowString = JSON.stringify(row).toLowerCase()
       return rowString.indexOf(val) !== -1 || !val
     })
-    console.log("filteredRows:", filteredRows)
+    console.log('filteredRows:', filteredRows)
     this.rows = filteredRows;
   }
 

@@ -1,0 +1,64 @@
+
+<ngx-datatable
+  *ngIf="visible"
+  class="material"
+  [style.width]="'100%'"
+  [rows]="rows"
+  [columnMode]="'standard'"
+  [headerHeight]="50"
+  [footerHeight]="50"
+  [rowHeight]="50"
+  [trackByProp]="encounter_id"
+  [scrollbarV]="true"
+  [scrollbarH]="true"
+  [selected]="selected"
+  [selectionType]="'checkbox'"
+  (activate)="onActivate($event)"
+  (select)='onSelect($event)'>
+  <ngx-datatable-column
+    [width]="60"
+    [sortable]="false"
+    [canAutoResize]="false"
+    [draggable]="false"
+    [resizeable]="false"
+    [frozenLeft]="true"
+    [headerCheckboxable]="true"
+    [checkboxable]="true">
+  </ngx-datatable-column>
+  <ngx-datatable-column
+    name="Encounter ID"
+    prop="encounter_id"
+    [frozenLeft]="true">
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Admit" prop="admit_date_time.$date">
+    <ng-template let-value="value" ngx-datatable-cell-template>
+      {{value | date}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Discharge" prop="discharge_date_time.$date">
+    <ng-template let-value="value" ngx-datatable-cell-template>
+      {{value | date}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Surgeon" prop="primary_surgeon_name"></ngx-datatable-column>
+  <ngx-datatable-column name="Specialty" prop="primary_surgeon_specialty"></ngx-datatable-column>
+  <ngx-datatable-column name="Primary Procedure" prop="primary_proc_code"></ngx-datatable-column>
+  <ngx-datatable-column name="Supply Cost" prop="total_supply_cost">
+    <ng-template let-value="value" ngx-datatable-cell-template>
+      {{value | currency:'USD':'symbol':'1.0-0'}}
+    </ng-template>
+  </ngx-datatable-column>
+  <ngx-datatable-column name="Age" prop="age_years"></ngx-datatable-column>
+  <ngx-datatable-column name="LOS" prop="los_days"></ngx-datatable-column>
+  <ngx-datatable-column name="CID" prop="cohort.cohort_id"></ngx-datatable-column>
+</ngx-datatable>
+
+<!-- <div class='selected-column'>
+  <h4>Selections <small>({{selected?.length}})</small></h4>
+  <ul>
+    <li *ngFor='let sel of selected'>
+      {{sel.name}}
+    </li>
+    <li *ngIf="!selected?.length">No Selections</li>
+  </ul>
+</div> -->

@@ -121,6 +121,12 @@ import { Location, LocationStrategy, HashLocationStrategy } from '@angular/commo
               <li><a href="#pinning" (click)="state='pinning'">Pinning</a></li>
             </ul>
           </li>
+          <li>
+            <h4>Empiric</h4>
+            <ul>
+              <li><a href="#empiric" (click)="state='empiric'">Empiric</a></li>
+            </ul>
+          </li>
         </ul>
       </nav>
       <content>
@@ -184,6 +190,9 @@ import { Location, LocationStrategy, HashLocationStrategy } from '@angular/commo
         <column-standard-demo *ngIf="state === 'fixed'"></column-standard-demo>
         <column-force-demo *ngIf="state === 'force'"></column-force-demo>
         <column-pinning-demo *ngIf="state === 'pinning'"></column-pinning-demo>
+
+        <!-- Empiric -->
+        <empiric *ngIf="state === 'empiric'"></empiric>
       </content>
     </div>
   `

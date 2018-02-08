@@ -2,9 +2,15 @@
   <h3>
     Supply Cost Tree
   </h3>
+
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <mat-form-field>
+      <input matInput placeholder="Search" (keyup)='updateFilter($event)'>
+    </mat-form-field>
+  </div>
+
   <ngx-datatable
-    class="material fullscreen"
-    style="top: 52px"
+    class="material"
     [columnMode]="'flex'"
     [headerHeight]="50"
     [footerHeight]="50"
@@ -27,21 +33,22 @@
       <ng-template let-column="column" ngx-datatable-header-template>
         <div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="20px">
           <span>{{column.name}}</span>
-          <select id="level-select"
+          <!-- <select id="level-select"
             (change)="setLevelsExpanded($event)"
             [value]="levelsExpanded">
             <option value="-1">Collapse All</option>
             <option value="0">Level 0</option>
             <option value="1">Level 1</option>
             <option value="2">Level 2</option>
-          </select>
-          <!-- <mat-form-field>
-            <mat-select [(value)]="levelsExpanded" (selectionChange)="setLevelsExpanded($event)">
-              <mat-option value="option1">Level 1</mat-option>
-              <mat-option value="option2">Level 2</mat-option>
-              <mat-option value="option3">Level 3</mat-option>
+          </select> -->
+          <mat-form-field>
+            <mat-select [value]="levelsExpanded" (selectionChange)="setLevelsExpanded($event)" placeholder="Expand Levels">
+              <mat-option value="-1">Collapse All</mat-option>
+              <mat-option value="0">Level 0</mat-option>
+              <mat-option value="1">Level 1</mat-option>
+              <mat-option value="2">Level 2</mat-option>
             </mat-select>
-          </mat-form-field> -->
+          </mat-form-field>
         </div>
       </ng-template>
       <ng-template let-value="value" ngx-datatable-cell-template>
@@ -65,19 +72,31 @@
       </ng-template>
     </ngx-datatable-column>
 
-    <!-- Physician A -->
+    <!-- Physician/Facility/Encounter -->
     <div *ngFor="let dr of rows[0]?.doctors; let rows = rows; index as i;">
       <ngx-datatable-column name="{{dr.name}} Qty" prop="doctors.{{i}}.qty" [flexGrow]="1">
-        <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-          {{value}}
-        </ng-template>
-      </ngx-datatable-column>
-
-      <ngx-datatable-column name="{{dr.name}} Cost" prop="doctors.{{i}}.cost" [flexGrow]="1">
         <ng-template let-value="value" ngx-datatable-cell-template>
           {{value}}
         </ng-template>
       </ngx-datatable-column>
+
+      <ngx-datatable-column name="{{dr.name}} Cost" prop="doctors.{{i}}.cost" [cellClass]="getCellClass" [flexGrow]="1">
+        <ng-template let-value="value" ngx-datatable-cell-template>
+          {{value}}
+        </ng-template>
+      </ngx-datatable-column>
+
+      <!-- <ngx-datatable-footer>
+        <ng-template
+          ngx-datatable-footer-template>
+          <div fxFlex fxLayout="row" fxLayoutAlign="end end">
+            <mat-form-field>
+              <input matInput placeholder="Search" (keyup)='updateFilter($event)'>
+            </mat-form-field>
+          </div>
+        </ng-template>
+      </ngx-datatable-footer> -->
+
     </div>
 
   </ngx-datatable>

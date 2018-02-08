@@ -2,6 +2,7 @@
   "extends": "tslint-config-swimlane/base",
   "rulesDirectory": [],
   "rules": {
-    "prefer-conditional-expression": false
+    "prefer-conditional-expression": false,
+    "semicolon": [false, "always"]
   }
 }

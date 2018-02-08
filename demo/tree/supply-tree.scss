@@ -1,0 +1,33 @@
+// Import a pre-built theme
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+// @import './supply-tree-theme.scss';
+
+@import '~@angular/material/theming';
+
+$app-warn:  mat-palette($mat-pink);
+$warn: mat-color($app-warn);
+
+// @include supply-tree-theme($theme);
+
+
+ngx-datatable.material.fullscreen {
+  top: 52px;
+}
+
+.out-of-range {
+  background-color: $warn
+}
+
+#level-select {
+  width: 100px;
+  margin: 0;
+}
+
+.disabled {
+  opacity: 0.5;
+}
+
+.icon {
+  height: 10px;
+  width: 10px;
+}
