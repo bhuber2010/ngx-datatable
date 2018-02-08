@@ -10,3 +10,6 @@ import '@angular/common';
 
 // RxJS
 import 'rxjs/Rx';
+
+import 'hammerjs';
+import 'web-animations-js';

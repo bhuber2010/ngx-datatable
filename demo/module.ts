@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from './angular-material.module'
 
 import { NgxDatatableModule } from '../src';
@@ -73,6 +74,7 @@ import { ColumnPinningComponent } from './columns/pinning.component';
 import { EmpiricComponent } from './empiric/empiric.component'
 import { SupplyTreeComponent } from './empiric/supply-detail/supply.component'
 import { EncountersComponent } from './empiric/encounters/encounters.component'
+import { RemoveEncountersDialog } from './empiric/remove-encounters/removeEncounters.component'
 
 @NgModule({
   declarations: [
@@ -124,17 +126,20 @@ import { EncountersComponent } from './empiric/encounters/encounters.component'
     SupplyTreeComponentDemo,
     SupplyTreeComponent,
     EncountersComponent,
-    EmpiricComponent
+    EmpiricComponent,
+    RemoveEncountersDialog
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
     MaterialModule,
+    HttpClientModule,
     ReactiveFormsModule,
     FlexLayoutModule,
     NgxDatatableModule
   ],
+  entryComponents: [RemoveEncountersDialog],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,4 +1,4 @@
-import { Component, Input, AfterViewInit } from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'supply-tree',
@@ -7,34 +7,25 @@ import { Component, Input, AfterViewInit } from '@angular/core';
     './supply-tree.scss'
   ]
 })
-export class SupplyTreeComponent implements AfterViewInit {
+export class SupplyTreeComponent implements OnInit, AfterViewInit {
 
-  @Input() visible: boolean
-
-  rows = [];
-  fullRowSet = [];
+  fullRowSet: any[]
   levelsExpanded: string = '0';
 
+  @Input() visible: boolean
+  @Input() rows: any[]
+
   constructor() {
-    this.fetch((data) => {
-      this.fullRowSet = [...data]
-      this.rows = data;
-    });
+
+  }
+
+  ngOnInit() {
+    this.fullRowSet = [...this.rows]
+    console.log(this)
   }
 
   ngAfterViewInit() {
     this.setLevelsExpanded(this.levelsExpanded)
-  }
-
-  fetch(cb) {
-    const req = new XMLHttpRequest();
-    req.open('GET', `assets/data/supply_tree.json`);
-
-    req.onload = () => {
-      cb(JSON.parse(req.response));
-    };
-
-    req.send();
   }
 
   getCellClass({ row, column, value }): any {

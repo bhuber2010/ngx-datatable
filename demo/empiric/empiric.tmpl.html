@@ -6,20 +6,19 @@
 
   <mat-toolbar color="primary">
     <mat-toolbar-row>
-      <button mat-button (click)="showEncounters=!showEncounters">Encounters</button>
-      <button mat-button (click)="showSupplyDetail=!showSupplyDetail">Supply Detail</button>
+      <button mat-button (click)="showEncountersTable()">Encounters</button>
+      <button mat-button (click)="showSupplyDetailTable()">Supply Detail</button>
       <mat-form-field>
         <input matInput placeholder="Search" (keyup)='updateFilter($event)'>
       </mat-form-field>
       <span fxFlex></span>
+      <button *ngIf="showEncounters" mat-icon-button (click)="removeEncounters()">
+        <mat-icon>delete</mat-icon>
+      </button>
     </mat-toolbar-row>
   </mat-toolbar>
 
-  <div fxLayout="row" fxLayoutAlign="center center">
-
-  </div>
-
-  <supply-tree [visible]="showSupplyDetail"></supply-tree>
-  <encounters [visible]="showEncounters"></encounters>
+  <encounters *ngIf="encounters.length" [visible]="showEncounters" [rows]="encounters"></encounters>
+  <supply-tree *ngIf="supplyTree.length" [visible]="showSupplyDetail" [rows]="supplyTree"></supply-tree>
 
 </div>

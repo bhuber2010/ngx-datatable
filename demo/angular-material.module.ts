@@ -11,7 +11,6 @@ import {
   MatDialogModule,
   MatExpansionModule,
   MatGridListModule,
-  MatIconModule,
   MatInputModule,
   MatListModule,
   MatMenuModule,
@@ -33,6 +32,8 @@ import {
   MatTooltipModule,
   MatStepperModule,
 } from '@angular/material';
+
+import {MatIconModule} from '@angular/material/icon';
 
 import {CdkTableModule} from '@angular/cdk/table';
 

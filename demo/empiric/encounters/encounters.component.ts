@@ -1,34 +1,54 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+import { without } from 'lodash'
+
+import { RemoveEncountersDialog } from '../remove-encounters/removeEncounters.component'
 
 @Component({
   selector: 'encounters',
   templateUrl: 'encounters.tmpl.html',
   styleUrls: ['./encounters.scss']
 })
-export class EncountersComponent {
+export class EncountersComponent implements OnInit {
 
   @Input() visible: boolean
-  
-  rows = [];
-  fullRowSet = [];
-  selected = [];
+  @Input() rows: any[]
 
-  constructor() {
-    this.fetch((data) => {
-      this.fullRowSet = [...data]
-      this.rows = data;
-    });
+  fullRowSet: any[]
+  selected = [];
+  removeSuccess: boolean = false
+
+  constructor(public dialog: MatDialog) {}
+
+  ngOnInit() {
+    this.fullRowSet = [...this.rows]
+    console.log(this)
   }
 
-  fetch(cb) {
-    const req = new XMLHttpRequest();
-    req.open('GET', `assets/data/encounters.json`);
+  openReasonDialog() {
+    const dialogRef = this.dialog.open(RemoveEncountersDialog, {
+      width: '400px',
+      height: '400px',
+      position: {
+        left: '400',
+        top: '50'
+      },
+      data: {
+        reason: 'nothing'
+      }
+    })
+    return dialogRef.afterClosed()
+  }
 
-    req.onload = () => {
-      cb(JSON.parse(req.response));
-    };
-
-    req.send();
+  excludeEncounters() {
+    this.openReasonDialog().subscribe(reason => {
+      console.log(reason)
+      this.removeSuccess = reason ? !!reason.length : false
+      if (this.removeSuccess) {
+        const remainingRows = without(this.rows, ...this.selected)
+        this.rows = [...remainingRows]
+      }
+    })
   }
 
   onSelect({ selected }) {
@@ -38,9 +58,7 @@ export class EncountersComponent {
     this.selected.push(...selected);
   }
 
-  onActivate(event) {
-    console.log('Activate Event', event);
-  }
+  onActivate(event) {}
 
   remove() {
     this.selected = [];
