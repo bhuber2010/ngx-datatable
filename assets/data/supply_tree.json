@@ -1,7 +1,9 @@
 [
   {
     "unspsc": 10000,
+    "parentUnspsc": null,
     "name": "Intravenous and Arterial Admin Products",
+    "treeStatus": "expanded",
     "doctors": [
       {
         "name": "Dr A",
@@ -18,13 +20,13 @@
         "cost": 54.05,
         "qty": null
       }
-    ],
-    "treeStatus": "expanded"
+    ]
   },
   {
     "unspsc": 11000,
     "parentUnspsc": 10000,
     "name": "IV and Arterial Infusion Based Products and Supplies",
+    "treeStatus": "collapsed",
     "doctors": [
       {
         "name": "Dr A",
@@ -41,13 +43,13 @@
         "cost": 53.39,
         "qty": null
       }
-    ],
-    "treeStatus": "collapsed"
+    ]
   },
   {
     "unspsc": 11100,
     "parentUnspsc": 11000,
     "name": "IV or Arterial Fluid Warmers",
+    "treeStatus": "collapsed",
     "doctors": [
       {
         "name": "Dr A",
@@ -64,37 +66,37 @@
         "cost": 53.39,
         "qty": null
       }
-    ],
-    "treeStatus": "collapsed"
+    ]
   },
   {
     "unspsc": 11110,
     "parentUnspsc": 11100,
     "name": "SET FLUID WARMER LEVEL I IR600",
     "avgCost": 53.39,
+    "treeStatus": "disabled",
     "doctors": [
       {
         "name": "Dr A",
         "cost": 53.39,
-        "qty": null
+        "qty": 1
       },
       {
         "name": "Dr B",
         "cost": 69.41,
-        "qty": null
+        "qty": 1.3
       },
       {
         "name": "Dr C",
         "cost": 53.39,
-        "qty": null
+        "qty": 1
       }
-    ],
-    "treeStatus": "disabled"
+    ]
   },
   {
     "unspsc": 12000,
     "parentUnspsc": 10000,
     "name": "IV and Arterial Tubing and Admin Sets and Related Products",
+    "treeStatus": "collapsed",
     "doctors": [
       {
         "name": "Dr A",
@@ -111,13 +113,13 @@
         "cost": 0.66,
         "qty": null
       }
-    ],
-    "treeStatus": "collapsed"
+    ]
   },
   {
     "unspsc": 12100,
     "parentUnspsc": 12000,
     "name": "IV or Arterial Tubing Needless Injection Port Products",
+    "treeStatus": "collapsed",
     "doctors": [
       {
         "name": "Dr A",
@@ -134,14 +136,14 @@
         "cost": 0.66,
         "qty": null
       }
-    ],
-    "treeStatus": "collapsed"
+    ]
   },
   {
     "unspsc": 12110,
     "parentUnspsc": 12100,
     "name": "STOPCOCK PLUS 4WAY TAP ROTATION",
     "avgCost": 0.66,
+    "treeStatus": "disabled",
     "doctors": [
       {
         "name": "Dr A",
@@ -158,7 +160,6 @@
         "cost": 0.66,
         "qty": 1
       }
-    ],
-    "treeStatus": "disabled"
+    ]
   }
 ]
