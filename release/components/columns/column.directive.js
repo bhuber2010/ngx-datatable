@@ -94,6 +94,10 @@ var DataTableColumnDirective = /** @class */ (function () {
     ], DataTableColumnDirective.prototype, "isTreeColumn", void 0);
     __decorate([
         core_1.Input(),
+        __metadata("design:type", Number)
+    ], DataTableColumnDirective.prototype, "treeLevelIndent", void 0);
+    __decorate([
+        core_1.Input(),
         core_1.ContentChild(column_cell_directive_1.DataTableColumnCellDirective, { read: core_1.TemplateRef }),
         __metadata("design:type", core_1.TemplateRef)
     ], DataTableColumnDirective.prototype, "cellTemplate", void 0);
@@ -104,24 +108,9 @@ var DataTableColumnDirective = /** @class */ (function () {
     ], DataTableColumnDirective.prototype, "headerTemplate", void 0);
     __decorate([
         core_1.Input(),
-        core_1.ContentChild(tree_directive_1.DataTableColumnCellTreeExpander, { read: core_1.TemplateRef }),
+        core_1.ContentChild(tree_directive_1.DataTableColumnCellTreeIcon, { read: core_1.TemplateRef }),
         __metadata("design:type", core_1.TemplateRef)
-    ], DataTableColumnDirective.prototype, "treeExpanderTemplate", void 0);
-    __decorate([
-        core_1.Input(),
-        core_1.ContentChild(tree_directive_1.DataTableColumnCellTreeCollapser, { read: core_1.TemplateRef }),
-        __metadata("design:type", core_1.TemplateRef)
-    ], DataTableColumnDirective.prototype, "treeCollapserTemplate", void 0);
-    __decorate([
-        core_1.Input(),
-        core_1.ContentChild(tree_directive_1.DataTableColumnCellTreeLoader, { read: core_1.TemplateRef }),
-        __metadata("design:type", core_1.TemplateRef)
-    ], DataTableColumnDirective.prototype, "treeLoaderTemplate", void 0);
-    __decorate([
-        core_1.Input(),
-        core_1.ContentChild(tree_directive_1.DataTableColumnCellTreeDisable, { read: core_1.TemplateRef }),
-        __metadata("design:type", core_1.TemplateRef)
-    ], DataTableColumnDirective.prototype, "treeDisableTemplate", void 0);
+    ], DataTableColumnDirective.prototype, "treeIconTemplate", void 0);
     DataTableColumnDirective = __decorate([
         core_1.Directive({ selector: 'ngx-datatable-column' })
     ], DataTableColumnDirective);

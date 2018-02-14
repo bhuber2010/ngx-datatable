@@ -469,7 +469,7 @@ export declare class DatatableComponent implements OnInit, DoCheck, AfterViewIni
      */
     onBodySelect(event: any): void;
     /**
-     * A row was expanded ot collapsed for tree
+     * A row was expanded or collapsed for tree
      */
     onTreeAction(event: any): void;
 }

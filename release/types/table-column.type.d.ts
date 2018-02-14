@@ -159,6 +159,13 @@ export interface TableColumn {
      */
     headerTemplate?: any;
     /**
+     * Tree icon template ref
+     *
+     * @type {*}
+     * @memberOf TableColumn
+     */
+    treeIconTemplate?: any;
+    /**
      * CSS Classes for the cell
      *
      *
@@ -186,4 +193,11 @@ export interface TableColumn {
      * @memberOf TableColumn
      */
     isTreeColumn?: boolean;
+    /**
+     * Width of the tree level indent
+     *
+     * @type {number}
+     * @memberOf TableColumn
+     */
+    treeLevelIndent?: number;
 }

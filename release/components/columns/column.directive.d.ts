@@ -20,10 +20,8 @@ export declare class DataTableColumnDirective {
     headerClass: string | ((data: any) => string | any);
     cellClass: string | ((data: any) => string | any);
     isTreeColumn: boolean;
+    treeLevelIndent: number;
     cellTemplate: TemplateRef<any>;
     headerTemplate: TemplateRef<any>;
-    treeExpanderTemplate: TemplateRef<any>;
-    treeCollapserTemplate: TemplateRef<any>;
-    treeLoaderTemplate: TemplateRef<any>;
-    treeDisableTemplate: TemplateRef<any>;
+    treeIconTemplate: TemplateRef<any>;
 }

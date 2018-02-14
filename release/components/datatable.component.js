@@ -839,7 +839,7 @@ var DatatableComponent = /** @class */ (function () {
         this.select.emit(event);
     };
     /**
-     * A row was expanded ot collapsed for tree
+     * A row was expanded or collapsed for tree
      */
     DatatableComponent.prototype.onTreeAction = function (event) {
         var _this = this;
