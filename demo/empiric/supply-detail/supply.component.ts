@@ -1,8 +1,9 @@
-import { Component, Input, OnInit, AfterViewInit } from '@angular/core';
+import { Component, Input, OnInit, AfterViewInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'supply-tree',
   templateUrl: 'supply-tree.tmpl.html',
+  encapsulation: ViewEncapsulation.None,
   styleUrls: [
     './supply-tree.scss'
   ]
@@ -15,9 +16,7 @@ export class SupplyTreeComponent implements OnInit, AfterViewInit {
   @Input() visible: boolean
   @Input() rows: any[]
 
-  constructor() {
-
-  }
+  constructor() {}
 
   ngOnInit() {
     this.fullRowSet = [...this.rows]
@@ -31,7 +30,7 @@ export class SupplyTreeComponent implements OnInit, AfterViewInit {
   getCellClass({ row, column, value }): any {
     // console.log("getCellClass:", value)
     return {
-      'out-of-range': value >= 69
+      'out-of-range': value >= 60
     }
   }
 

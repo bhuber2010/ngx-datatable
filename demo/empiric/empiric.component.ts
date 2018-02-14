@@ -1,4 +1,4 @@
-import { Component, Injectable, AfterViewInit, ViewChild } from '@angular/core';
+import { Component, Injectable, AfterViewInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { ErrorObservable } from 'rxjs/observable/ErrorObservable';
@@ -10,7 +10,8 @@ import { EncountersComponent } from './encounters/encounters.component'
 @Component({
   selector: 'empiric',
   templateUrl: 'empiric.tmpl.html',
-  styleUrls: ['./empiric.scss']
+  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./theme.scss', './empiric.scss']
 })
 export class EmpiricComponent {
 

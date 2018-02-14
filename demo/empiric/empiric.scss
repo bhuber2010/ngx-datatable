@@ -1,1 +1,7 @@
 @import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+@import '~@angular/material/theming';
+@include mat-core();
+
+$app-warn:  mat-palette($mat-pink);
+$warn: mat-color($app-warn);
