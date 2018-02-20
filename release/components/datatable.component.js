@@ -709,6 +709,9 @@ var DatatableComponent = /** @class */ (function () {
             if (this.groupedRows) {
                 return this.groupedRows.length;
             }
+            else if (this.treeFromRelation != null && this.treeToRelation != null) {
+                return this._internalRows.length;
+            }
             else {
                 return val.length;
             }
