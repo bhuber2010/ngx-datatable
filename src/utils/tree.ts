@@ -67,6 +67,8 @@ export function groupRowsByParents(rows: any[], from: string = '', to: string = 
 
     let resolvedRows: any[] = [];
     nodeById[0].flatten(function() {
+      this.row.parent = this.parent;
+      this.row.children = this.children;
       resolvedRows = [...resolvedRows, this.row];
     }, true);
 

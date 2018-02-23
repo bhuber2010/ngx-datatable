@@ -6970,6 +6970,8 @@ function groupRowsByParents(rows, from, to) {
         }
         var resolvedRows_1 = [];
         nodeById[0].flatten(function () {
+            this.row.parent = this.parent;
+            this.row.children = this.children;
             resolvedRows_1 = resolvedRows_1.concat([this.row]);
         }, true);
         return resolvedRows_1;
