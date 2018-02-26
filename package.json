@@ -135,5 +135,8 @@
     "webpack-merge": "^4.1.1",
     "webpack-notifier": "^1.5.0",
     "zone.js": "^0.8.18"
+  },
+  "dependencies": {
+    "lodash": "^4.17.5"
   }
 }

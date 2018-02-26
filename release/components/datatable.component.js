@@ -189,6 +189,10 @@ var DatatableComponent = /** @class */ (function () {
          * A row was expanded ot collapsed for tree
          */
         this.treeAction = new core_1.EventEmitter();
+        /**
+         * New internal rows were built due to new incoming row data
+         */
+        this.internalRowsBuilt = new core_1.EventEmitter();
         this.rowCount = 0;
         this._offsetX = new BehaviorSubject_1.BehaviorSubject(0);
         this._count = 0;
@@ -218,6 +222,7 @@ var DatatableComponent = /** @class */ (function () {
             }
             // auto group by parent on new update
             this._internalRows = utils_1.groupRowsByParents(this._internalRows, this.treeFromRelation, this.treeToRelation);
+            this.internalRowsBuilt.emit({ event: event, rows: this._internalRows });
             // recalculate sizes/etc
             this.recalculate();
             if (this._rows && this._groupRowsBy) {
@@ -1027,6 +1032,10 @@ var DatatableComponent = /** @class */ (function () {
         core_1.Output(),
         __metadata("design:type", core_1.EventEmitter)
     ], DatatableComponent.prototype, "treeAction", void 0);
+    __decorate([
+        core_1.Output(),
+        __metadata("design:type", core_1.EventEmitter)
+    ], DatatableComponent.prototype, "internalRowsBuilt", void 0);
     __decorate([
         core_1.HostBinding('class.fixed-header'),
         __metadata("design:type", Boolean),

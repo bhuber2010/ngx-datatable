@@ -120,7 +120,7 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
     if (val) {
       this._internalRows = [...val];
     }
-    
+
     // auto sort on new updates
     if (!this.externalSorting) {
       this._internalRows = sortRows(this._internalRows, this._internalColumns, this.sorts);
@@ -132,6 +132,8 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
       this.treeFromRelation,
       this.treeToRelation
     );
+
+    this.internalRowsBuilt.emit({ event, rows: this._internalRows });
 
     // recalculate sizes/etc
     this.recalculate();
@@ -493,6 +495,11 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
    * A row was expanded ot collapsed for tree
    */
   @Output() treeAction: EventEmitter<any> = new EventEmitter();
+
+  /**
+   * New internal rows were built due to new incoming row data
+   */
+  @Output() internalRowsBuilt: EventEmitter<any> = new EventEmitter();
 
   /**
    * CSS class applied if the header height if fixed height.

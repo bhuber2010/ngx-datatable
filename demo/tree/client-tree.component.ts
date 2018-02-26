@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { cloneDeep } from 'lodash';
+
 @Component({
   selector: 'client-side-tree-demo',
   template: `
@@ -14,13 +16,16 @@ import { Component } from '@angular/core';
       </h3>
       <ngx-datatable
         class="material"
+        [style.height]="'300px'"
         [columnMode]="'flex'"
         [headerHeight]="50"
         [footerHeight]="50"
-        [rowHeight]="'auto'"
+        [rowHeight]="50"
+        [scrollbarV]="true"
         [treeFromRelation]="'manager'"
         [treeToRelation]="'name'"
         [rows]="rows"
+        (internalRowsBuilt)="onNewRows($event)"
         (treeAction)="onTreeAction($event)">
         <ngx-datatable-column name="Name" [flexGrow]="3" [isTreeColumn]="true">
           <ng-template let-value="value" ngx-datatable-cell-template>
@@ -75,6 +80,10 @@ export class ClientTreeComponent {
     };
 
     req.send();
+  }
+
+  onNewRows(event: any) {
+    console.log('New Internal Rows:', cloneDeep(event));
   }
 
   onTreeAction(event: any) {

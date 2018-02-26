@@ -262,6 +262,10 @@ export declare class DatatableComponent implements OnInit, DoCheck, AfterViewIni
      */
     treeAction: EventEmitter<any>;
     /**
+     * New internal rows were built due to new incoming row data
+     */
+    internalRowsBuilt: EventEmitter<any>;
+    /**
      * CSS class applied if the header height if fixed height.
      */
     readonly isFixedHeader: boolean;
