@@ -35,7 +35,7 @@
  *
  */
 
-export function groupRowsByParents(rows: any[], from: string = '', to: string = ''): any[] {
+export function groupRowsByParents(rows: any[], from: string = '', to: string = '', cb?: any): any[] {
   if (from !== '' && to !== '') {
     const nodeById = {};
     const l = rows.length;
@@ -64,6 +64,8 @@ export function groupRowsByParents(rows: any[], from: string = '', to: string = 
       node.row['level'] = node.parent.row['level'] + 1;
       node.parent.children.push(node);
     }
+
+    if (cb) cb(nodeById[0]);
 
     let resolvedRows: any[] = [];
     nodeById[0].flatten(function() {

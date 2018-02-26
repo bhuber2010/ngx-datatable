@@ -130,10 +130,9 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
     this._internalRows = groupRowsByParents(
       this._internalRows,
       this.treeFromRelation,
-      this.treeToRelation
+      this.treeToRelation,
+      this.rootTreeNodeCallback.bind(this)
     );
-
-    this.internalRowsBuilt.emit({ event, rows: this._internalRows });
 
     // recalculate sizes/etc
     this.recalculate();
@@ -796,7 +795,8 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
       this._internalRows = groupRowsByParents(
         this._internalRows,
         this.treeFromRelation,
-        this.treeToRelation
+        this.treeToRelation,
+        this.rootTreeNodeCallback.bind(this)
       );
 
       this.recalculatePages();
@@ -1065,7 +1065,8 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
     this._internalRows = groupRowsByParents(
       this._internalRows,
       this.treeFromRelation,
-      this.treeToRelation
+      this.treeToRelation,
+      this.rootTreeNodeCallback.bind(this)
     );
 
     this.sorts = sorts;
@@ -1125,5 +1126,12 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
     const rowIndex = this._rows.findIndex(r =>
       r[this.treeToRelation] === event.row[this.treeToRelation]);
     this.treeAction.emit({row, rowIndex});
+  }
+
+  /**
+   * Return the Tree to the user
+   */
+  rootTreeNodeCallback(rootTreeNode: any) {
+    this.internalRowsBuilt.emit({ event, rootNode: rootTreeNode });
   }
 }

@@ -34,4 +34,4 @@
  * @param rows
  *
  */
-export declare function groupRowsByParents(rows: any[], from?: string, to?: string): any[];
+export declare function groupRowsByParents(rows: any[], from?: string, to?: string, cb?: any): any[];

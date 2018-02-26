@@ -36,7 +36,7 @@
  *
  */
 Object.defineProperty(exports, "__esModule", { value: true });
-function groupRowsByParents(rows, from, to) {
+function groupRowsByParents(rows, from, to, cb) {
     if (from === void 0) { from = ''; }
     if (to === void 0) { to = ''; }
     if (from !== '' && to !== '') {
@@ -63,6 +63,8 @@ function groupRowsByParents(rows, from, to) {
             node.row['level'] = node.parent.row['level'] + 1;
             node.parent.children.push(node);
         }
+        if (cb)
+            cb(nodeById[0]);
         var resolvedRows_1 = [];
         nodeById[0].flatten(function () {
             this.row.parent = this.parent;

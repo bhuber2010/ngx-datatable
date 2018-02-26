@@ -476,4 +476,8 @@ export declare class DatatableComponent implements OnInit, DoCheck, AfterViewIni
      * A row was expanded or collapsed for tree
      */
     onTreeAction(event: any): void;
+    /**
+     * Return the Tree to the user
+     */
+    rootTreeNodeCallback(rootTreeNode: any): void;
 }

@@ -221,8 +221,7 @@ var DatatableComponent = /** @class */ (function () {
                 this._internalRows = utils_1.sortRows(this._internalRows, this._internalColumns, this.sorts);
             }
             // auto group by parent on new update
-            this._internalRows = utils_1.groupRowsByParents(this._internalRows, this.treeFromRelation, this.treeToRelation);
-            this.internalRowsBuilt.emit({ event: event, rows: this._internalRows });
+            this._internalRows = utils_1.groupRowsByParents(this._internalRows, this.treeFromRelation, this.treeToRelation, this.rootTreeNodeCallback.bind(this));
             // recalculate sizes/etc
             this.recalculate();
             if (this._rows && this._groupRowsBy) {
@@ -567,7 +566,7 @@ var DatatableComponent = /** @class */ (function () {
                 this._internalRows = this.rows.slice();
             }
             // auto group by parent on new update
-            this._internalRows = utils_1.groupRowsByParents(this._internalRows, this.treeFromRelation, this.treeToRelation);
+            this._internalRows = utils_1.groupRowsByParents(this._internalRows, this.treeFromRelation, this.treeToRelation, this.rootTreeNodeCallback.bind(this));
             this.recalculatePages();
             this.cd.markForCheck();
         }
@@ -802,7 +801,7 @@ var DatatableComponent = /** @class */ (function () {
             this._internalRows = utils_1.sortRows(this._internalRows, this._internalColumns, sorts);
         }
         // auto group by parent on new update
-        this._internalRows = utils_1.groupRowsByParents(this._internalRows, this.treeFromRelation, this.treeToRelation);
+        this._internalRows = utils_1.groupRowsByParents(this._internalRows, this.treeFromRelation, this.treeToRelation, this.rootTreeNodeCallback.bind(this));
         this.sorts = sorts;
         // Always go to first page when sorting to see the newly sorted data
         this.offset = 0;
@@ -857,6 +856,12 @@ var DatatableComponent = /** @class */ (function () {
             return r[_this.treeToRelation] === event.row[_this.treeToRelation];
         });
         this.treeAction.emit({ row: row, rowIndex: rowIndex });
+    };
+    /**
+     * Return the Tree to the user
+     */
+    DatatableComponent.prototype.rootTreeNodeCallback = function (rootTreeNode) {
+        this.internalRowsBuilt.emit({ event: event, rootNode: rootTreeNode });
     };
     __decorate([
         core_1.Input(),
