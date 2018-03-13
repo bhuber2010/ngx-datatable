@@ -221,6 +221,7 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
   isFocused: boolean = false;
   onCheckboxChangeFn = this.onCheckboxChange.bind(this);
   activateFn = this.activate.emit.bind(this.activate);
+  treeActionFn = this.onTreeAction.bind(this);
 
   cellContext: any = {
     onCheckboxChangeFn: this.onCheckboxChangeFn,
@@ -231,7 +232,8 @@ export class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     column: this.column,
     rowHeight: this.rowHeight,
     isSelected: this.isSelected,
-    rowIndex: this.rowIndex
+    rowIndex: this.rowIndex,
+    treeActionFn: this.treeActionFn
   };
 
   private _isSelected: boolean;
