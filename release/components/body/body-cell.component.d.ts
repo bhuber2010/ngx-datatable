@@ -26,6 +26,7 @@ export declare class DataTableBodyCellComponent implements DoCheck, OnDestroy {
     isFocused: boolean;
     onCheckboxChangeFn: any;
     activateFn: any;
+    treeActionFn: any;
     cellContext: any;
     private _isSelected;
     private _sorts;

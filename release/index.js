@@ -233,6 +233,7 @@ var DataTableBodyCellComponent = /** @class */ (function () {
         this.isFocused = false;
         this.onCheckboxChangeFn = this.onCheckboxChange.bind(this);
         this.activateFn = this.activate.emit.bind(this.activate);
+        this.treeActionFn = this.onTreeAction.bind(this);
         this.cellContext = {
             onCheckboxChangeFn: this.onCheckboxChangeFn,
             activateFn: this.activateFn,
@@ -242,7 +243,8 @@ var DataTableBodyCellComponent = /** @class */ (function () {
             column: this.column,
             rowHeight: this.rowHeight,
             isSelected: this.isSelected,
-            rowIndex: this.rowIndex
+            rowIndex: this.rowIndex,
+            treeActionFn: this.treeActionFn
         };
         this._element = element.nativeElement;
     }
