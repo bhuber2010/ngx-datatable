@@ -24,6 +24,7 @@ export declare class DataTableHeaderCellComponent {
     readonly width: number;
     readonly isCheckboxable: boolean;
     sortFn: any;
+    calcSortClassFn: any;
     sortClass: string;
     sortDir: SortDirection;
     selectFn: any;

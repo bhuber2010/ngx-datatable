@@ -4108,11 +4108,12 @@ var DataTableHeaderCellComponent = /** @class */ (function () {
         this.select = new core_1.EventEmitter();
         this.columnContextmenu = new core_1.EventEmitter(false);
         this.sortFn = this.onSort.bind(this);
+        this.calcSortClassFn = this.calcSortClass.bind(this);
         this.selectFn = this.select.emit.bind(this.select);
         this.cellContext = {
             column: this.column,
             sortDir: this.sortDir,
-            sortClass: this.sortClass,
+            calcSortClassFn: this.calcSortClassFn,
             sortFn: this.sortFn,
             allRowsSelected: this.allRowsSelected,
             selectFn: this.selectFn
