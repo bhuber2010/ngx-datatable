@@ -1,5 +1,5 @@
 /**
- * angular2-data-table v"11.1.7" (https://github.com/swimlane/angular2-data-table)
+ * angular2-data-table v"11.2.0" (https://github.com/swimlane/angular2-data-table)
  * Copyright 2016
  * Licensed under MIT
  */
@@ -1516,12 +1516,15 @@ var DataTableBodyComponent = /** @class */ (function () {
      * Get the row height
      */
     DataTableBodyComponent.prototype.getRowHeight = function (row) {
-        var rowHeight = this.rowHeight;
+        var height;
         // if its a function return it
         if (typeof this.rowHeight === 'function') {
-            rowHeight = this.rowHeight(row);
+            height = this.rowHeight(row);
         }
-        return rowHeight;
+        else {
+            height = this.rowHeight;
+        }
+        return height;
     };
     /**
      * @param group the group with all rows
@@ -1791,7 +1794,7 @@ var DataTableBodyComponent = /** @class */ (function () {
     ], DataTableBodyComponent.prototype, "externalPaging", void 0);
     __decorate([
         core_1.Input(),
-        __metadata("design:type", Number)
+        __metadata("design:type", Object)
     ], DataTableBodyComponent.prototype, "rowHeight", void 0);
     __decorate([
         core_1.Input(),
@@ -2773,7 +2776,7 @@ var DatatableComponent = /** @class */ (function () {
             }
             // auto sort on new updates
             if (!this.externalSorting) {
-                this._internalRows = utils_1.sortRows(this._internalRows, this._internalColumns, this.sorts);
+                this.sortInternalRows();
             }
             // auto group by parent on new update
             this._internalRows = utils_1.groupRowsByParents(this._internalRows, this.treeFromRelation, this.treeToRelation, this.rootTreeNodeCallback.bind(this));
@@ -3039,7 +3042,7 @@ var DatatableComponent = /** @class */ (function () {
     DatatableComponent.prototype.ngAfterViewInit = function () {
         var _this = this;
         if (!this.externalSorting) {
-            this._internalRows = utils_1.sortRows(this._internalRows, this._internalColumns, this.sorts);
+            this.sortInternalRows();
         }
         // this has to be done to prevent the change detection
         // tree from freaking out because we are readjusting
@@ -3079,6 +3082,7 @@ var DatatableComponent = /** @class */ (function () {
                 this._internalColumns = utils_1.translateTemplates(arr);
                 utils_1.setColumnDefaults(this._internalColumns);
                 this.recalculateColumns();
+                this.sortInternalRows();
                 this.cd.markForCheck();
             }
         }
@@ -3115,7 +3119,7 @@ var DatatableComponent = /** @class */ (function () {
     DatatableComponent.prototype.ngDoCheck = function () {
         if (this.rowDiffer.diff(this.rows)) {
             if (!this.externalSorting) {
-                this._internalRows = utils_1.sortRows(this._internalRows, this._internalColumns, this.sorts);
+                this.sortInternalRows();
             }
             else {
                 this._internalRows = this.rows.slice();
@@ -3348,16 +3352,15 @@ var DatatableComponent = /** @class */ (function () {
                 selected: this.selected
             });
         }
-        var sorts = event.sorts;
+        this.sorts = event.sorts;
         // this could be optimized better since it will resort
         // the rows again on the 'push' detection...
         if (this.externalSorting === false) {
             // don't use normal setter so we don't resort
-            this._internalRows = utils_1.sortRows(this._internalRows, this._internalColumns, sorts);
+            this.sortInternalRows();
         }
         // auto group by parent on new update
         this._internalRows = utils_1.groupRowsByParents(this._internalRows, this.treeFromRelation, this.treeToRelation, this.rootTreeNodeCallback.bind(this));
-        this.sorts = sorts;
         // Always go to first page when sorting to see the newly sorted data
         this.offset = 0;
         this.bodyComponent.updateOffsetY(this.offset);
@@ -3417,6 +3420,9 @@ var DatatableComponent = /** @class */ (function () {
      */
     DatatableComponent.prototype.rootTreeNodeCallback = function (rootTreeNode) {
         this.internalRowsBuilt.emit({ event: event, rootNode: rootTreeNode });
+    };
+    DatatableComponent.prototype.sortInternalRows = function () {
+        this._internalRows = utils_1.sortRows(this._internalRows, this._internalColumns, this.sorts);
     };
     __decorate([
         core_1.Input(),

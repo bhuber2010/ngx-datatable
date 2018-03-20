@@ -480,4 +480,5 @@ export declare class DatatableComponent implements OnInit, DoCheck, AfterViewIni
      * Return the Tree to the user
      */
     rootTreeNodeCallback(rootTreeNode: any): void;
+    private sortInternalRows();
 }
