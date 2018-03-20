@@ -14,7 +14,11 @@ import { cloneDeep } from 'lodash';
           </a>
         </small>
       </h3>
+      <div>
+        <button type="button" (click)="showTree = !showTree">NgIf</button>
+      </div>
       <ngx-datatable
+        *ngIf="showTree"
         class="material"
         [style.height]="'300px'"
         [columnMode]="'flex'"
@@ -22,11 +26,23 @@ import { cloneDeep } from 'lodash';
         [footerHeight]="50"
         [rowHeight]="50"
         [scrollbarV]="true"
+        [selectionType]="'checkbox'"
         [treeFromRelation]="'manager'"
         [treeToRelation]="'name'"
         [rows]="rows"
         (internalRowsBuilt)="onNewRows($event)"
         (treeAction)="onTreeAction($event)">
+        <ngx-datatable-column
+          [headerCheckboxable]="true"
+          [checkboxable]="true"
+          [frozenLeft]="true"
+          [sortable]="false"
+          [draggable]="false"
+          [resizeable]="false"
+          [width]="40"
+          [minWidth]="30"
+          [maxWidth]="40">
+        </ngx-datatable-column>
         <ngx-datatable-column name="Name" [flexGrow]="3" [isTreeColumn]="true">
           <ng-template let-value="value" ngx-datatable-cell-template>
             {{value}}
@@ -42,9 +58,9 @@ import { cloneDeep } from 'lodash';
               class="disabled icon datatable-icon-down"></i>
           </ng-template>
         </ngx-datatable-column>
-        <ngx-datatable-column name="Gender" [flexGrow]="1">
-          <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-            {{value}}
+        <ngx-datatable-column name="Gender" [cellClass]="getCellClass" [flexGrow]="1">
+          <ng-template let-row="row" let-value="value" let-treeAction="treeActionFn" ngx-datatable-cell-template>
+            <span (click)="treeAction(row)">{{value}}</span>
           </ng-template>
         </ngx-datatable-column>
         <ngx-datatable-column name="Age" [flexGrow]="1">
@@ -64,6 +80,7 @@ import { cloneDeep } from 'lodash';
 export class ClientTreeComponent {
 
   rows = [];
+  showTree = false;
 
   constructor() {
     this.fetch((data) => {
@@ -84,6 +101,13 @@ export class ClientTreeComponent {
 
   onNewRows(event: any) {
     console.log('New Internal Rows:', cloneDeep(event));
+  }
+
+  getCellClass({ row, column, value }): any {
+    // console.log(cloneDeep(row), cloneDeep(column), value);
+    return {
+      'is-female': value === 'female'
+    };
   }
 
   onTreeAction(event: any) {
