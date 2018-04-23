@@ -9,7 +9,7 @@ export function selectRowsTree(selected: any[], row: any, comparefn: any) {
   if (comparefn(row, selected) === -1) {
     selected.push(row);
   } else {
-    let selectedIndexs = [];
+    let selectedIndexs: any[] = [];
     selectedIndexs = flattenTreeIndexs(selected, row, comparefn, selectedIndexs);
     selectedIndexs.forEach(idx => selected.splice(idx, 1, null));
     selected = compact(selected);
@@ -23,7 +23,7 @@ function flattenTreeIndexs(selected: any[], row: any, comparefn: any, selectedIn
     selectedIndexs.push(rowIndex);
   }
   if (row.children && row.children.length > 0) {
-    row.children.forEach(childNode => {
+    row.children.forEach((childNode: any) => {
       flattenTreeIndexs(selected, childNode.row, comparefn, selectedIndexs);
     });
   }

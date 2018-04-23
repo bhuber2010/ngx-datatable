@@ -50,10 +50,10 @@ function groupRowsByParents(rows, from, to, cb) {
             }
             return arr;
         }, []);
-        for (var i = 0; i < l; i++) {
+        for (var i = 0; i < l; i++) { // make TreeNode objects for each item
             nodeById[rows[i][to]] = new TreeNode(rows[i]);
         }
-        for (var i = 0; i < l; i++) {
+        for (var i = 0; i < l; i++) { // link all TreeNode objects
             node = nodeById[rows[i][to]];
             var parent_1 = 0;
             if (node.row.hasOwnProperty(from) && !!node.row[from] && (uniqIDs.indexOf(node.row[from]) > -1)) {

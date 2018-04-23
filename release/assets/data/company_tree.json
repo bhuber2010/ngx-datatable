@@ -52,6 +52,20 @@
         "treeStatus": "disabled"
     },
     {
+        "name": "Amy Gin",
+        "gender": "male",
+        "company": "Polarium",
+        "manager": "Ethel Price",
+        "treeStatus": "collapsed"
+    },
+    {
+        "name": "Andy Smith",
+        "gender": "male",
+        "company": "Polarium",
+        "manager": "Amy Gin",
+        "treeStatus": "disabled"
+    },
+    {
         "name": "Lynda Mendoza",
         "gender": "female",
         "company": "Dogspa",

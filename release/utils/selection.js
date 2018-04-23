@@ -1,7 +1,37 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+var lodash_1 = require("lodash");
 function selectRows(selected, row, comparefn) {
     var selectedIndex = comparefn(row, selected);
+    return changeSelectStatusForRow(selected, row, selectedIndex);
+}
+exports.selectRows = selectRows;
+function selectRowsTree(selected, row, comparefn) {
+    if (comparefn(row, selected) === -1) {
+        selected.push(row);
+    }
+    else {
+        var selectedIndexs = [];
+        selectedIndexs = flattenTreeIndexs(selected, row, comparefn, selectedIndexs);
+        selectedIndexs.forEach(function (idx) { return selected.splice(idx, 1, null); });
+        selected = lodash_1.compact(selected);
+    }
+    return selected;
+}
+exports.selectRowsTree = selectRowsTree;
+function flattenTreeIndexs(selected, row, comparefn, selectedIndexs) {
+    var rowIndex = comparefn(row, selected);
+    if (rowIndex > -1) {
+        selectedIndexs.push(rowIndex);
+    }
+    if (row.children && row.children.length > 0) {
+        row.children.forEach(function (childNode) {
+            flattenTreeIndexs(selected, childNode.row, comparefn, selectedIndexs);
+        });
+    }
+    return selectedIndexs;
+}
+function changeSelectStatusForRow(selected, row, selectedIndex) {
     if (selectedIndex > -1) {
         selected.splice(selectedIndex, 1);
     }
@@ -10,7 +40,6 @@ function selectRows(selected, row, comparefn) {
     }
     return selected;
 }
-exports.selectRows = selectRows;
 function selectRowsBetween(selected, rows, index, prevIndex, comparefn) {
     var reverse = index < prevIndex;
     for (var i = 0; i < rows.length; i++) {

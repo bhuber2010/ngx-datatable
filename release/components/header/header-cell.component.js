@@ -59,7 +59,6 @@ var DataTableHeaderCellComponent = /** @class */ (function () {
             return this._sorts;
         },
         set: function (val) {
-            console.log("NEW SORTS:", this._column.name, val);
             this._sorts = val;
             this.sortDir = this.calcSortDir(val);
             this.cellContext.sortDir = this.sortDir;

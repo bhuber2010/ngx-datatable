@@ -25,7 +25,11 @@ var DataTableSelectionComponent = /** @class */ (function () {
         var multiClick = this.selectionType === types_1.SelectionType.multiClick;
         var selected = [];
         if (multi || chkbox || multiClick) {
-            if (event.shiftKey) {
+            if (chkbox && row.parent && row.children && row.children.length) {
+                // row is part of a tree, lets uncheck all child rows if unchecking
+                selected = utils_1.selectRowsTree(this.selected.slice(), row, this.getRowSelectedIdx.bind(this));
+            }
+            else if (event.shiftKey) {
                 selected = utils_1.selectRowsBetween([], this.rows, index, this.prevIndex, this.getRowSelectedIdx.bind(this));
             }
             else if (event.ctrlKey || event.metaKey || multiClick || chkbox) {
@@ -45,7 +49,8 @@ var DataTableSelectionComponent = /** @class */ (function () {
         (_a = this.selected).push.apply(_a, selected);
         this.prevIndex = index;
         this.select.emit({
-            selected: selected
+            selected: selected,
+            row: row
         });
         var _a;
     };
