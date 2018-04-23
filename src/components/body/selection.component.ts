@@ -1,10 +1,10 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { Keys, selectRows, selectRowsBetween } from '../../utils';
+import { Keys, selectRows, selectRowsTree, selectRowsBetween } from '../../utils';
 import { SelectionType } from '../../types';
 import { MouseEvent, KeyboardEvent } from '../../events';
 
 export interface Model {
-  type: string; 
+  type: string;
   event: MouseEvent | KeyboardEvent;
   row: any;
   rowElement: any;
@@ -42,7 +42,10 @@ export class DataTableSelectionComponent {
     let selected: any[] = [];
 
     if (multi || chkbox || multiClick) {
-      if (event.shiftKey) {
+      if (chkbox && row.parent && row.children && row.children.length) {
+        // row is part of a tree, lets uncheck all child rows if unchecking
+        selected = selectRowsTree([...this.selected], row, this.getRowSelectedIdx.bind(this));
+      } else if (event.shiftKey) {
         selected = selectRowsBetween(
           [],
           this.rows,
@@ -68,7 +71,8 @@ export class DataTableSelectionComponent {
     this.prevIndex = index;
 
     this.select.emit({
-      selected
+      selected,
+      row
     });
   }
 
