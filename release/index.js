@@ -18415,7 +18415,6 @@ var DataTableBodyComponent = /** @class */ (function () {
             return this._rows;
         },
         set: function (val) {
-            console.log(val);
             this._rows = val;
             this.rowExpansions.clear();
             this.recalcLayout();
@@ -19921,7 +19920,6 @@ var DatatableComponent = /** @class */ (function () {
             }
             // auto group by parent on new update
             this._internalRows = utils_1.groupRowsByParents(this._internalRows, this.treeFromRelation, this.treeToRelation, this.rootTreeNodeCallback.bind(this));
-            console.log('this._internalRows:', this._internalRows);
             // recalculate sizes/etc
             this.recalculate();
             if (this._rows && this._groupRowsBy) {
@@ -20266,7 +20264,6 @@ var DatatableComponent = /** @class */ (function () {
             else {
                 this._internalRows = this.rows.slice();
             }
-            console.log('ngDoCheck: groupRowsByParents');
             // auto group by parent on new update
             this._internalRows = utils_1.groupRowsByParents(this._internalRows, this.treeFromRelation, this.treeToRelation, this.rootTreeNodeCallback.bind(this));
             this.recalculatePages();
