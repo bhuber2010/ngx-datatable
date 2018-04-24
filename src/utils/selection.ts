@@ -23,8 +23,8 @@ function flattenTreeIndexs(selected: any[], row: any, comparefn: any, selectedIn
     selectedIndexs.push(rowIndex);
   }
   if (row.children && row.children.length > 0) {
-    row.children.forEach((childNode: any) => {
-      flattenTreeIndexs(selected, childNode.row, comparefn, selectedIndexs);
+    row.children.forEach((childRow: any) => {
+      flattenTreeIndexs(selected, childRow, comparefn, selectedIndexs);
     });
   }
   return selectedIndexs;

@@ -134,6 +134,8 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
       this.rootTreeNodeCallback.bind(this)
     );
 
+    console.log('this._internalRows:', this._internalRows);
+
     // recalculate sizes/etc
     this.recalculate();
 
@@ -791,7 +793,7 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
       } else {
         this._internalRows = [...this.rows];
       }
-
+      console.log('ngDoCheck: groupRowsByParents');
       // auto group by parent on new update
       this._internalRows = groupRowsByParents(
         this._internalRows,

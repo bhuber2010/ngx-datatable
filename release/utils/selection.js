@@ -25,8 +25,8 @@ function flattenTreeIndexs(selected, row, comparefn, selectedIndexs) {
         selectedIndexs.push(rowIndex);
     }
     if (row.children && row.children.length > 0) {
-        row.children.forEach(function (childNode) {
-            flattenTreeIndexs(selected, childNode.row, comparefn, selectedIndexs);
+        row.children.forEach(function (childRow) {
+            flattenTreeIndexs(selected, childRow, comparefn, selectedIndexs);
         });
     }
     return selectedIndexs;

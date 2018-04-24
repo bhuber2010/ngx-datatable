@@ -61,16 +61,16 @@ export function groupRowsByParents(rows: any[], from: string = '', to: string = 
         parent = node.row[from];
       }
       node.parent = nodeById[ parent ];
+      node.row.parent = node.parent.row;
       node.row['level'] = node.parent.row['level'] + 1;
       node.parent.children.push(node);
+      node.row.parent.children.push(node.row);
     }
 
     if (cb) cb(nodeById[0]);
 
     let resolvedRows: any[] = [];
     nodeById[0].flatten(function() {
-      this.row.parent = this.parent;
-      this.row.children = this.children;
       resolvedRows = [...resolvedRows, this.row];
     }, true);
 
@@ -92,6 +92,7 @@ class TreeNode {
         treeStatus: 'expanded'
       };
     }
+    row.children = [];
     this.row = row;
     this.parent = null;
     this.children = [];
