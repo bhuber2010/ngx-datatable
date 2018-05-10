@@ -24164,7 +24164,7 @@ function groupRowsByParents(rows, from, to, cb) {
             node.row.parent.children.push(node.row);
         }
         if (cb)
-            cb(nodeById[0]);
+            cb(nodeById);
         var resolvedRows_1 = [];
         nodeById[0].flatten(function () {
             resolvedRows_1 = resolvedRows_1.concat([this.row]);

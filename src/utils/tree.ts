@@ -67,7 +67,7 @@ export function groupRowsByParents(rows: any[], from: string = '', to: string = 
       node.row.parent.children.push(node.row);
     }
 
-    if (cb) cb(nodeById[0]);
+    if (cb) cb(nodeById);
 
     let resolvedRows: any[] = [];
     nodeById[0].flatten(function() {
