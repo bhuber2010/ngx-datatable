@@ -92,7 +92,7 @@ class TreeNode {
         treeStatus: 'expanded'
       };
     }
-    row.children = [];
+    if(!row.children) row.children = [];
     this.row = row;
     this.parent = null;
     this.children = [];
