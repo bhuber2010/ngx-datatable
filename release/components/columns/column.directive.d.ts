@@ -21,6 +21,8 @@ export declare class DataTableColumnDirective {
     cellClass: string | ((data: any) => string | any);
     isTreeColumn: boolean;
     treeLevelIndent: number;
+    summaryFunc: (cells: any[]) => any;
+    summaryTemplate: TemplateRef<any>;
     cellTemplate: TemplateRef<any>;
     headerTemplate: TemplateRef<any>;
     treeIconTemplate: TemplateRef<any>;

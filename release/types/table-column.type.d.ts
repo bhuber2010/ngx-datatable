@@ -200,4 +200,18 @@ export interface TableColumn {
      * @memberOf TableColumn
      */
     treeLevelIndent?: number;
+    /**
+     * Summary function
+     *
+     * @type {(cells: any[]) => any}
+     * @memberOf TableColumn
+     */
+    summaryFunc?: (cells: any[]) => any;
+    /**
+     * Summary cell template ref
+     *
+     * @type {*}
+     * @memberOf TableColumn
+     */
+    summaryTemplate?: any;
 }
