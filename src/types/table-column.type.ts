@@ -188,7 +188,7 @@ export interface TableColumn {
    * @memberOf TableColumn
    */
   treeIconTemplate?: any;
- 
+
   /**
    * CSS Classes for the cell
    *
@@ -223,10 +223,25 @@ export interface TableColumn {
 
   /**
    * Width of the tree level indent
-   * 
+   *
    * @type {number}
    * @memberOf TableColumn
    */
   treeLevelIndent?: number;
 
+  /**
+   * Summary function
+   *
+   * @type {(cells: any[]) => any}
+   * @memberOf TableColumn
+   */
+  summaryFunc?: (cells: any[]) => any;
+
+  /**
+   * Summary cell template ref
+   *
+   * @type {*}
+   * @memberOf TableColumn
+   */
+  summaryTemplate?: any;
 }

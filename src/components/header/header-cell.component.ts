@@ -10,6 +10,11 @@ import { MouseEvent } from '../../events';
   selector: 'datatable-header-cell',
   template: `
     <div class="datatable-header-cell-template-wrap">
+      <ng-template
+        *ngIf="isTarget"
+        [ngTemplateOutlet]="targetMarkerTemplate"
+        [ngTemplateOutletContext]="targetMarkerContext">
+      </ng-template>
       <label
         *ngIf="isCheckboxable"
         class="datatable-checkbox">
@@ -51,6 +56,10 @@ export class DataTableHeaderCellComponent {
   @Input() sortType: SortType;
   @Input() sortAscendingIcon: string;
   @Input() sortDescendingIcon: string;
+
+  @Input() isTarget: boolean;
+  @Input() targetMarkerTemplate: any;
+  @Input() targetMarkerContext: any;
 
   _allRowsSelected: boolean;
 
