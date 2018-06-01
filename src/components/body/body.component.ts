@@ -416,7 +416,6 @@ export class DataTableBodyComponent implements OnInit, OnDestroy {
     }
 
     this.temp = temp;
-    this.cd.detectChanges();
   }
 
   /**
