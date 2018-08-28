@@ -222,6 +222,14 @@ export interface TableColumn {
   isTreeColumn?: boolean;
 
   /**
+   * Is default tree button displayed on this column
+   *
+   * @type {boolean}
+   * @memberOf TableColumn
+   */
+  disableTreeBtn?: boolean;
+
+  /**
    * Width of the tree level indent
    *
    * @type {number}
