@@ -43,7 +43,7 @@ import { cloneDeep } from 'lodash';
           [minWidth]="30"
           [maxWidth]="40">
         </ngx-datatable-column>
-        <ngx-datatable-column name="Name" [flexGrow]="3" [isTreeColumn]="true">
+        <ngx-datatable-column name="Name" [flexGrow]="3" [isTreeColumn]="true" [disableTreeBtn]="false">
           <ng-template let-value="value" ngx-datatable-cell-template>
             {{value}}
           </ng-template>

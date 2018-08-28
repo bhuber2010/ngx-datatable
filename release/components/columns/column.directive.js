@@ -94,6 +94,10 @@ var DataTableColumnDirective = /** @class */ (function () {
     ], DataTableColumnDirective.prototype, "isTreeColumn", void 0);
     __decorate([
         core_1.Input(),
+        __metadata("design:type", Boolean)
+    ], DataTableColumnDirective.prototype, "disableTreeBtn", void 0);
+    __decorate([
+        core_1.Input(),
         __metadata("design:type", Number)
     ], DataTableColumnDirective.prototype, "treeLevelIndent", void 0);
     __decorate([

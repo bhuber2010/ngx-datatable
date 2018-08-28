@@ -1,33 +1,19 @@
 import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 
 @Component({
-  selector: 'responsive-demo',
-  styles: [`
-    @media screen and (max-width: 800px) {
-      .desktop-hidden {
-        display: initial;
-      }
-      .mobile-hidden {
-        display: none;
-      }
-    }
-    @media screen and (min-width: 800px) {
-      .desktop-hidden {
-        display: none;
-      }
-      .mobile-hidden {
-        display: initial;
-      }
-    }
-  `],
+  selector: 'cohort-info-demo',
   template: `
     <div>
       <h3>
-        Responsive Demo
+        Cohort Info Demo
         <small>
-          <a href="https://github.com/swimlane/ngx-datatable/blob/master/demo/basic/responsive.component.ts" target="_blank">
+          <a href="https://github.com/swimlane/ngx-datatable/blob/master/demo/basic/row-detail.component.ts" target="_blank">
             Source
           </a>
+        </small>
+        <small>
+          <a href="javascript:void(0)" (click)="table.rowDetail.expandAllRows()">Expand All</a> |
+          <a href="javascript:void(0)" (click)="table.rowDetail.collapseAllRows()">Collapse All</a>
         </small>
       </h3>
       <ngx-datatable
@@ -35,17 +21,18 @@ import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
         class='material expandable'
         [columnMode]="'force'"
         [headerHeight]="50"
-        [footerHeight]="0"
+        [footerHeight]="50"
         [rowHeight]="50"
         [scrollbarV]="true"
         [rows]='rows'
         (page)="onPage($event)">
 
         <!-- Row Detail Template -->
-        <ngx-datatable-row-detail [rowHeight]="50" #myDetailRow (toggle)="onDetailToggle($event)">
+        <ngx-datatable-row-detail [rowHeight]="100" #myDetailRow (toggle)="onDetailToggle($event)">
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-row-detail-template>
-            <div style="padding-left:60px; font-size:14px">
-              <div>{{row.gender}}, {{row.age}}</div>
+            <div style="padding-left:35px;">
+              <div><strong>Address</strong></div>
+              <div>{{row.address.city}}, {{row.address.state}}</div>
             </div>
           </ng-template>
         </ngx-datatable-row-detail>
@@ -57,56 +44,44 @@ import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
           [sortable]="false"
           [draggable]="false"
           [canAutoResize]="false">
-
           <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
             <a
-              href="#"
+              href="javascript:void(0)"
               [class.datatable-icon-right]="!expanded"
               [class.datatable-icon-down]="expanded"
               title="Expand/Collapse Row"
-              (click)="toggleExpandRow(row)"
-              class="desktop-hidden">
+              (click)="toggleExpandRow(row)">
             </a>
           </ng-template>
         </ngx-datatable-column>
-
-        <ngx-datatable-column name="Name" [flexGrow]="3" [minWidth]="200">
-          <ng-template let-value="value" ngx-datatable-cell-template>
-            {{value}}
+        <ngx-datatable-column name="Index" width="80">
+          <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+            <strong>{{rowIndex}}</strong>
           </ng-template>
         </ngx-datatable-column>
-
-        <ngx-datatable-column name="Gender" [flexGrow]="1">
-          <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-            <span class="mobile-hidden">{{column.name}}</span>
+        <ngx-datatable-column name="Expanded" width="80">
+          <ng-template let-row="row" let-expanded="expanded" ngx-datatable-cell-template>
+            <strong>{{expanded === 1}}</strong>
           </ng-template>
-
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Name" width="200">
+          <ng-template let-value="value" ngx-datatable-cell-template>
+            <strong>{{value}}</strong>
+          </ng-template>
+        </ngx-datatable-column>
+        <ngx-datatable-column name="Gender" width="300">
           <ng-template let-row="row" let-value="value" ngx-datatable-cell-template>
-            <span class="mobile-hidden">{{value}}</span>
+            <i [innerHTML]="row['name']"></i> and <i>{{value}}</i>
           </ng-template>
         </ngx-datatable-column>
-
-        <ngx-datatable-column name="Age" [flexGrow]="1">
-          <ng-template let-column="column" let-sort="sortFn" ngx-datatable-header-template>
-            <span class="mobile-hidden">{{column.name}}</span>
-          </ng-template>
-
-          <ng-template let-value="value" ngx-datatable-cell-template>
-            <span class="mobile-hidden">{{value}}</span>
-          </ng-template>
-        </ngx-datatable-column>
-
+        <ngx-datatable-column name="Age" ></ngx-datatable-column>
       </ngx-datatable>
-    </div>
-
-    <div style="margin: 50px;">
-    This demo combines the features used in the <i>Row Detail</i> Rows demo, <i>Flex</i> Column demo, and the <i>Inline</i> Templates demo. When your browser is at 800px, the gender and age columns will be hidden and will appear in the row detail view.
     </div>
   `,
   encapsulation: ViewEncapsulation.None
 
 })
-export class ResponsiveComponent {
+export class CohortInfoComponent {
 
   @ViewChild('myTable') table: any;
 
@@ -129,7 +104,7 @@ export class ResponsiveComponent {
 
   fetch(cb) {
     const req = new XMLHttpRequest();
-    req.open('GET', `assets/data/100k.json`);
+    req.open('GET', `assets/data/cohortInfo.json`);
 
     req.onload = () => {
       cb(JSON.parse(req.response));

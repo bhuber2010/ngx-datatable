@@ -20,6 +20,7 @@ export declare class DataTableColumnDirective {
     headerClass: string | ((data: any) => string | any);
     cellClass: string | ((data: any) => string | any);
     isTreeColumn: boolean;
+    disableTreeBtn: boolean;
     treeLevelIndent: number;
     summaryFunc: (cells: any[]) => any;
     summaryTemplate: TemplateRef<any>;

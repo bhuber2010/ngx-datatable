@@ -29,7 +29,7 @@ export type TreeStatus = 'collapsed' | 'expanded' | 'loading' | 'disabled';
       </label>
       <button
         [disabled]="treeStatus==='disabled'"
-        *ngIf="column.isTreeColumn"
+        *ngIf="column.isTreeColumn && !column.disableTreeBtn"
         (click)="onTreeAction()">
         <span *ngIf="!column.treeIconTemplate">
           <i *ngIf="treeStatus==='loading'"

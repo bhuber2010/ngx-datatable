@@ -17822,7 +17822,7 @@ var DataTableBodyCellComponent = /** @class */ (function () {
         core_1.Component({
             selector: 'datatable-body-cell',
             changeDetection: core_1.ChangeDetectionStrategy.OnPush,
-            template: "\n    <div class=\"datatable-body-cell-label\"\n      [style.margin-left.px]=\"calcLeftMargin(column, row)\">\n      <label\n        *ngIf=\"column.checkboxable && (!displayCheck || displayCheck(row, column, value))\"\n        class=\"datatable-checkbox\">\n        <input\n          type=\"checkbox\"\n          [checked]=\"isSelected\"\n          (click)=\"onCheckboxChange($event)\"\n        />\n      </label>\n      <button\n        [disabled]=\"treeStatus==='disabled'\"\n        *ngIf=\"column.isTreeColumn\"\n        (click)=\"onTreeAction()\">\n        <span *ngIf=\"!column.treeIconTemplate\">\n          <i *ngIf=\"treeStatus==='loading'\"\n            class=\"icon datatable-icon-collapse\"></i>\n          <i *ngIf=\"treeStatus==='collapsed'\"\n            class=\"icon datatable-icon-up\"></i>\n          <i *ngIf=\"treeStatus==='expanded' ||\n                    treeStatus==='disabled'\"\n            class=\"icon datatable-icon-down\"></i>\n        </span>\n        <ng-template *ngIf=\"column.treeIconTemplate\"\n          [ngTemplateOutlet]=\"column.treeIconTemplate\"\n          [ngTemplateOutletContext]=\"cellContext\">\n        </ng-template>\n      </button>\n\n      <span\n        *ngIf=\"!column.cellTemplate\"\n        [title]=\"sanitizedValue\"\n        [innerHTML]=\"value\">\n      </span>\n      <ng-template #cellTemplate\n        *ngIf=\"column.cellTemplate\"\n        [ngTemplateOutlet]=\"column.cellTemplate\"\n        [ngTemplateOutletContext]=\"cellContext\">\n      </ng-template>\n    </div>\n  "
+            template: "\n    <div class=\"datatable-body-cell-label\"\n      [style.margin-left.px]=\"calcLeftMargin(column, row)\">\n      <label\n        *ngIf=\"column.checkboxable && (!displayCheck || displayCheck(row, column, value))\"\n        class=\"datatable-checkbox\">\n        <input\n          type=\"checkbox\"\n          [checked]=\"isSelected\"\n          (click)=\"onCheckboxChange($event)\"\n        />\n      </label>\n      <button\n        [disabled]=\"treeStatus==='disabled'\"\n        *ngIf=\"column.isTreeColumn && !column.disableTreeBtn\"\n        (click)=\"onTreeAction()\">\n        <span *ngIf=\"!column.treeIconTemplate\">\n          <i *ngIf=\"treeStatus==='loading'\"\n            class=\"icon datatable-icon-collapse\"></i>\n          <i *ngIf=\"treeStatus==='collapsed'\"\n            class=\"icon datatable-icon-up\"></i>\n          <i *ngIf=\"treeStatus==='expanded' ||\n                    treeStatus==='disabled'\"\n            class=\"icon datatable-icon-down\"></i>\n        </span>\n        <ng-template *ngIf=\"column.treeIconTemplate\"\n          [ngTemplateOutlet]=\"column.treeIconTemplate\"\n          [ngTemplateOutletContext]=\"cellContext\">\n        </ng-template>\n      </button>\n\n      <span\n        *ngIf=\"!column.cellTemplate\"\n        [title]=\"sanitizedValue\"\n        [innerHTML]=\"value\">\n      </span>\n      <ng-template #cellTemplate\n        *ngIf=\"column.cellTemplate\"\n        [ngTemplateOutlet]=\"column.cellTemplate\"\n        [ngTemplateOutletContext]=\"cellContext\">\n      </ng-template>\n    </div>\n  "
         }),
         __metadata("design:paramtypes", [core_1.ElementRef, core_1.ChangeDetectorRef])
     ], DataTableBodyCellComponent);
@@ -19752,6 +19752,10 @@ var DataTableColumnDirective = /** @class */ (function () {
         core_1.Input(),
         __metadata("design:type", Boolean)
     ], DataTableColumnDirective.prototype, "isTreeColumn", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Boolean)
+    ], DataTableColumnDirective.prototype, "disableTreeBtn", void 0);
     __decorate([
         core_1.Input(),
         __metadata("design:type", Number)

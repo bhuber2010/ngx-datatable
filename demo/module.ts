@@ -23,6 +23,8 @@ import { RowCssComponent } from './basic/css.component';
 import { DynamicHeightComponent } from './basic/dynamic-height.component';
 import { FooterDemoComponent } from './basic/footer.component';
 import { RowGroupingComponent } from './basic/row-grouping.component';
+import { CohortStatComponent } from './basic/cohort-stat-grouping.component';
+import { CohortInfoComponent } from './basic/cohort-info.component';
 
 // -- Themes
 import { BootstrapThemeComponent } from './basic/bootstrap.component';
@@ -117,6 +119,8 @@ import { SummaryRowInlineHtmlComponent } from './summary/summary-row-inline-html
     DynamicHeightComponent,
     FooterDemoComponent,
     RowGroupingComponent,
+    CohortStatComponent,
+    CohortInfoComponent,
     BootstrapThemeComponent,
     ClientTreeComponent,
     SummaryRowSimpleComponent,

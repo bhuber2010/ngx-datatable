@@ -212,6 +212,22 @@ select {
   margin: 5px 0;
 }
 
+.ngx-datatable.material .datatable-body .datatable-group-header {
+  background: rgb(162, 174, 200) !important;
+}
+
+.ngx-datatable.material .datatable-body .datatable-group-header a {
+  color: white;
+}
+
+.standout-header {
+  background: rgb(124, 168, 164);
+}
+
+.standout-header span {
+  color: white;
+}
+
 .age-is-ten {
   background: #ffc91f;
 }

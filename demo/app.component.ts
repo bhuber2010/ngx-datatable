@@ -65,11 +65,13 @@ import { Location, LocationStrategy, HashLocationStrategy } from '@angular/commo
           <li>
             <h4>Rows</h4>
             <ul>
+              <li><a href="#cohort-stat-grouping" (click)="state='cohort-stat-grouping'">Cohort Stat Grouping</a></li>
               <li><a href="#row-grouping" (click)="state='row-grouping'">Row Grouping</a></li>
               <li><a href="#" (click)="state=''">Fluid Row Height</a></li>
               <li><a href="#basic-fixed" (click)="state='basic-fixed'">Fixed Row Height</a></li>
               <li><a href="#dynamic" (click)="state='dynamic'">Dynamic Row Height</a></li>
               <li><a href="#row-details" (click)="state='row-details'">Row Detail</a></li>
+              <li><a href="#cohort-info" (click)="state='cohort-info'">Cohort Info</a></li>
               <li><a href="#responsive" (click)="state='responsive'">Responsive</a></li>
             </ul>
           </li>
@@ -141,6 +143,7 @@ import { Location, LocationStrategy, HashLocationStrategy } from '@angular/commo
         <virtual-scroll-demo *ngIf="state === 'virtual-scroll'"></virtual-scroll-demo>
         <horz-vert-scrolling-demo *ngIf="state === 'horz-vert-scrolling'"></horz-vert-scrolling-demo>
         <multiple-tables-demo *ngIf="state === 'multiple-tables'"></multiple-tables-demo>
+        <cohort-info-demo *ngIf="state === 'cohort-info'"></cohort-info-demo>
         <row-details-demo *ngIf="state === 'row-details'"></row-details-demo>
         <responsive-demo *ngIf="state === 'responsive'"></responsive-demo>
         <filter-demo *ngIf="state === 'filter'"></filter-demo>
@@ -161,6 +164,7 @@ import { Location, LocationStrategy, HashLocationStrategy } from '@angular/commo
         <client-side-tree-demo *ngIf="state === 'client-tree'"></client-side-tree-demo>
 
         <!-- Paging -->
+        <cohort-stat-demo *ngIf="state === 'cohort-stat-grouping'"></cohort-stat-demo>
         <row-grouping-demo *ngIf="state === 'row-grouping'"></row-grouping-demo>
         <client-paging-demo *ngIf="state === 'client-paging'"></client-paging-demo>
         <server-paging-demo *ngIf="state === 'server-paging'"></server-paging-demo>
