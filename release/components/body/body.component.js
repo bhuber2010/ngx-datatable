@@ -301,7 +301,6 @@ var DataTableBodyComponent = /** @class */ (function () {
             }
         }
         this.temp = temp;
-        this.cd.detectChanges();
     };
     /**
      * Get the row height
