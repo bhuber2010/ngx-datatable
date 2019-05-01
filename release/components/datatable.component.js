@@ -166,7 +166,7 @@ var DatatableComponent = /** @class */ (function () {
         /**
          * A height of summary row
          */
-        this.summaryHeight = this.rowHeight;
+        this.summaryHeight = (typeof this.rowHeight === 'function') ? this.rowHeight() : this.rowHeight;
         /**
          * A property holds a summary row position: top/bottom
          */
@@ -363,9 +363,9 @@ var DatatableComponent = /** @class */ (function () {
          * the row heights are fixed heights.
          */
         get: function () {
-            var rowHeight = this.rowHeight;
-            return (typeof rowHeight === 'string') ?
-                rowHeight !== 'auto' : true;
+            var height = (typeof this.rowHeight === 'function') ? this.rowHeight() : this.rowHeight;
+            var rowHeight = height;
+            return (typeof rowHeight === 'string') ? rowHeight !== 'auto' : true;
         },
         enumerable: true,
         configurable: true
@@ -377,6 +377,17 @@ var DatatableComponent = /** @class */ (function () {
          */
         get: function () {
             return this.scrollbarV;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(DatatableComponent.prototype, "isVirtualized", {
+        /**
+         * CSS class applied to root element if
+         * virtualization is enabled.
+         */
+        get: function () {
+            return this.virtualization;
         },
         enumerable: true,
         configurable: true
@@ -665,6 +676,12 @@ var DatatableComponent = /** @class */ (function () {
      */
     DatatableComponent.prototype.onBodyPage = function (_a) {
         var offset = _a.offset;
+        // Avoid pagination caming from body events like scroll when the table 
+        // has no virtualization and the external paging is enable. 
+        // This means, let's the developer handle pagination by my him(her) self
+        if (this.externalPaging && !this.virtualization) {
+            return;
+        }
         this.offset = offset;
         this.page.emit({
             count: this.count,
@@ -708,8 +725,9 @@ var DatatableComponent = /** @class */ (function () {
         // Keep the page size constant even if the row has been expanded.
         // This is because an expanded row is still considered to be a child of
         // the original row.  Hence calculation would use rowHeight only.
-        if (this.scrollbarV) {
-            var size = Math.ceil(this.bodyHeight / this.rowHeight);
+        if (this.scrollbarV && this.virtualization) {
+            var height = (typeof this.rowHeight === 'function') ? this.rowHeight() : this.rowHeight;
+            var size = Math.ceil(this.bodyHeight / height);
             return Math.max(size, 0);
         }
         // if limit is passed, we are paging
@@ -941,7 +959,7 @@ var DatatableComponent = /** @class */ (function () {
     ], DatatableComponent.prototype, "scrollbarH", void 0);
     __decorate([
         core_1.Input(),
-        __metadata("design:type", Number)
+        __metadata("design:type", Object)
     ], DatatableComponent.prototype, "rowHeight", void 0);
     __decorate([
         core_1.Input(),
@@ -1117,6 +1135,11 @@ var DatatableComponent = /** @class */ (function () {
         __metadata("design:type", Boolean),
         __metadata("design:paramtypes", [])
     ], DatatableComponent.prototype, "isVertScroll", null);
+    __decorate([
+        core_1.HostBinding('class.virtualized'),
+        __metadata("design:type", Boolean),
+        __metadata("design:paramtypes", [])
+    ], DatatableComponent.prototype, "isVirtualized", null);
     __decorate([
         core_1.HostBinding('class.scroll-horz'),
         __metadata("design:type", Boolean),

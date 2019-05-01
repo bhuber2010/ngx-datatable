@@ -236,7 +236,7 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
    * The row height; which is necessary
    * to calculate the height for the lazy rendering.
    */
-  @Input() rowHeight: number = 30;
+  @Input() rowHeight: number | (() => number) = 30;
 
   /**
    * Type of column width distribution formula.
@@ -471,7 +471,7 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
   /**
    * A height of summary row
    */
-  @Input() summaryHeight: number = this.rowHeight;
+  @Input() summaryHeight: number = (typeof this.rowHeight === 'function') ? this.rowHeight() : this.rowHeight;
 
   /**
    * A property holds a summary row position: top/bottom
@@ -546,9 +546,9 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
    */
   @HostBinding('class.fixed-row')
   get isFixedRow(): boolean {
-    const rowHeight: number | string = this.rowHeight;
-    return (typeof rowHeight === 'string') ?
-      (<string>rowHeight) !== 'auto' : true;
+    const height = (typeof this.rowHeight === 'function') ? this.rowHeight() : this.rowHeight;
+    const rowHeight: number | string = height;    
+    return (typeof rowHeight === 'string') ? (<string>rowHeight) !== 'auto' : true;
   }
 
   /**
@@ -981,7 +981,8 @@ export class DatatableComponent implements OnInit, DoCheck, AfterViewInit {
     // This is because an expanded row is still considered to be a child of
     // the original row.  Hence calculation would use rowHeight only.
     if (this.scrollbarV && this.virtualization) {
-      const size = Math.ceil(this.bodyHeight / this.rowHeight);
+      const height = (typeof this.rowHeight === 'function') ? this.rowHeight() : this.rowHeight;
+      const size = Math.ceil(this.bodyHeight / height);
       return Math.max(size, 0);
     }
 
