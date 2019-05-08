@@ -44,6 +44,7 @@ export function groupRowsByParents(rows: any[], from: string = '', to: string = 
     nodeById[0] = new TreeNode(); // that's the root node
 
     const uniqIDs = rows.reduce((arr, item) => {
+      delete item.children;
       if (arr.indexOf(item[to]) === -1) {
         arr.push(item[to]);
       }
@@ -92,7 +93,7 @@ class TreeNode {
         treeStatus: 'expanded'
       };
     }
-    row.children = [];
+    if(!row.children) row.children = [];
     this.row = row;
     this.parent = null;
     this.children = [];

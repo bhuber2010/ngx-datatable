@@ -45,6 +45,7 @@ function groupRowsByParents(rows, from, to, cb) {
         var node = null;
         nodeById[0] = new TreeNode(); // that's the root node
         var uniqIDs = rows.reduce(function (arr, item) {
+            delete item.children;
             if (arr.indexOf(item[to]) === -1) {
                 arr.push(item[to]);
             }
@@ -87,7 +88,8 @@ var TreeNode = /** @class */ (function () {
                 treeStatus: 'expanded'
             };
         }
-        row.children = [];
+        if (!row.children)
+            row.children = [];
         this.row = row;
         this.parent = null;
         this.children = [];
